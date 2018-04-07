@@ -38,7 +38,19 @@ const userSchema = new Schema({
     street: {
         type: String,
         lowercase: true
-    }
+    },
+    carts: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Cart'
+        }
+    ],
+    orders: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Order'
+        }
+    ]
 });
 
 userSchema.pre('save', function (next) {
