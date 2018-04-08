@@ -24,13 +24,14 @@ class ProductController {
         });
     }
 
-    static getProductsByLimit(pageNumber, perPage) {
+    static getProductsByLimit(pageNumber, perPage, query) {
         pageNumber = pageNumber > 0 ? pageNumber - 1 : 0;
 
         return new Promise((resolve, reject) => {
-            Product.find()
+            Product.find(query)
                 .limit(perPage)
                 .skip(perPage * pageNumber)
+                .populate('category')
                 .then((products) => {
                     ProductController.getCountOfProducts()
                         .then((counts) => {
@@ -44,6 +45,19 @@ class ProductController {
                 })
                 .catch(reject);
         });
+    }
+
+    static buildLimitProductsQuery(query) {
+        let productsQuery = {};
+
+        if (query.name) {
+            productsQuery.name = {
+                $regex: '.*' + query.name + '.*',
+                $options: 'i'
+            };
+        }
+
+        return productsQuery;
     }
 
     static saveProduct(product) {

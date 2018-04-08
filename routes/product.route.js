@@ -12,7 +12,9 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:pageNumber/:perPage', (req, res) => {
-    ProductController.getProductsByLimit(+req.params.pageNumber, +req.params.perPage)
+    let productsLimitQuery = ProductController.buildLimitProductsQuery(req.query);
+
+    ProductController.getProductsByLimit(+req.params.pageNumber, +req.params.perPage, productsLimitQuery)
         .then((products) => res.send(products))
         .catch((err) => RouteHandler.error(res, 404, '', err));
 });
