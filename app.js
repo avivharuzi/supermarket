@@ -13,6 +13,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/supermarket');
 
 const authRoute = require('./routes/auth.route');
 const overallRoute = require('./routes/overall.route');
+const productRoute = require('./routes/product.route');
 
 const app = express();
 
@@ -28,5 +29,6 @@ app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
 app.use('/auth', authRoute);
 app.use('/overall', overallRoute);
+app.use('/api/product', productRoute);
 
 module.exports = app;
