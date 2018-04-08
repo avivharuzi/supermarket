@@ -69,6 +69,7 @@ class ProductController {
             }, {
                 new: true
             })
+            .populate('category')
             .then(resolve)
             .catch(reject);
         });
