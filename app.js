@@ -12,6 +12,7 @@ mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://127.0.0.1:27017/supermarket');
 
 const authRoute = require('./routes/auth.route');
+const overallRoute = require('./routes/overall.route');
 
 const app = express();
 
@@ -26,5 +27,6 @@ app.use(fileUpload());
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
 app.use('/auth', authRoute);
+app.use('/overall', overallRoute);
 
 module.exports = app;
