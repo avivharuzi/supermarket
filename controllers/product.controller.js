@@ -1,10 +1,11 @@
 const Product = require('./../models/product.model');
 const Category = require('./../models/category.model');
 
-const CategoryController = require('./../controllers/category.controller');
+const CategoryController = require('./category.controller');
 
 const ValidationHandler = require('./../handlers/validation.handler');
 const FileHandler = require('./../handlers/file.handler');
+const MongooseHandler = require('./../handlers/mongoose.handler');
 
 class ProductController {
     static getCountOfProducts() {
@@ -25,26 +26,7 @@ class ProductController {
     }
 
     static getProductsByLimit(pageNumber, perPage, query) {
-        pageNumber = pageNumber > 0 ? pageNumber - 1 : 0;
-
-        return new Promise((resolve, reject) => {
-            Product.find(query)
-                .limit(perPage)
-                .skip(perPage * pageNumber)
-                .populate('category')
-                .then((products) => {
-                    ProductController.getCountOfProducts()
-                        .then((counts) => {
-                            resolve({
-                                products: products,
-                                page: pageNumber + 1,
-                                pages: Math.ceil(counts / perPage)
-                            })
-                        })
-                        .catch(reject);
-                })
-                .catch(reject);
-        });
+        return MongooseHandler.pagination('Product', pageNumber, perPage, query, 'category');
     }
 
     static buildLimitProductsQuery(query) {
@@ -124,24 +106,24 @@ class ProductController {
 
                 if (product.name === product.existName) {
                     Promise.all([
-                        CategoryController.checkCategoryById(product.category),
-                        ProductController.checkProductById(product.productId)
+                        MongooseHandler.checkBeforeActionById('Category', product.category),
+                        MongooseHandler.checkBeforeActionById('Product', product.productId)
                     ])
                     .then(() => resolve(product))
                     .catch(reject);
                 } else {
                     Promise.all([
-                        ProductController.checkExistInProductByField('name', product.name.toLowerCase()),
-                        CategoryController.checkCategoryById(product.category),
-                        ProductController.checkProductById(product.productId)
+                        MongooseHandler.checkIfAlreadyExist('Product', 'name', product.name.toLowerCase()),
+                        MongooseHandler.checkBeforeActionById('Category', product.category),
+                        MongooseHandler.checkBeforeActionById('Product', product.productId)
                     ])
                     .then(() => resolve(product))
                     .catch(reject);
                 }
             } else {
                 Promise.all([
-                    ProductController.checkExistInProductByField('name', product.name.toLowerCase()),
-                    CategoryController.checkCategoryById(product.category)
+                    MongooseHandler.checkIfAlreadyExist('Product', 'name', product.name.toLowerCase()),
+                    MongooseHandler.checkBeforeActionById('Category', product.category),
                 ])
                 .then(() => resolve(product))
                 .catch(reject);
@@ -177,36 +159,6 @@ class ProductController {
                     .then(() => resolve(product))
                     .catch(() => resolve(product));
             }
-        });
-    }
-
-    static checkProductById(id) {
-        return new Promise((resolve, reject) => {
-            Product.findById(id)
-                .then((productExist) => {
-                    if (productExist) {
-                        resolve(productExist);
-                    } else {
-                        reject(['Product does not exist']);
-                    }
-                })
-                .catch(() => reject(['Product does not exist']));
-        });
-    }
-
-    static checkExistInProductByField(field, value) {
-        return new Promise((resolve, reject) => {
-            Product.findOne({
-                [field]: value
-            })
-            .then((productExist) => {
-                if (productExist) {
-                    reject([`This ${field} is already in used`])
-                } else {
-                    resolve();
-                }
-            })
-            .catch(reject);
         });
     }
 }

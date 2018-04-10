@@ -3,6 +3,7 @@ const Category = require('./../models/category.model');
 const Product = require('./../models/product.model');
 
 const ValidationHandler = require('./../handlers/validation.handler');
+const MongooseHandler = require('./../handlers/mongoose.handler');
 
 class CategoryController {
     static getCategories() {
@@ -59,36 +60,22 @@ class CategoryController {
                 category.categoryId = categoryId;
 
                 if (category.name === category.existName) {
-                    CategoryController.checkCategoryById(category.categoryId)
-                        .then(() => resolve(category))
-                        .catch(reject);
+                    MongooseHandler.checkBeforeActionById('Category', category.categoryId)
+                    .then(() => resolve(category))
+                    .catch(reject);
                 } else {
                     Promise.all([
-                        CategoryController.checkCategoryById(category.categoryId),
-                        CategoryController.checkCategoryNameExist(category)
+                        MongooseHandler.checkBeforeActionById('Category', category.categoryId),
+                        MongooseHandler.checkIfAlreadyExist('Category', 'name', category.name.toLowerCase())
                     ])
-                        .then(() => resolve(category))
-                        .catch(reject);
+                    .then(() => resolve(category))
+                    .catch(reject);
                 }
             } else {
-                CategoryController.checkCategoryNameExist(category)
+                MongooseHandler.checkIfAlreadyExist('Category', 'name', category.name.toLowerCase())
                     .then(() => resolve(category))
                     .catch(reject);
             }
-        });
-    }
-
-    static checkCategoryById(id) {
-        return new Promise((resolve, reject) => {
-            Category.findById(id)
-                .then((categoryExist) => {
-                    if (categoryExist) {
-                        resolve(categoryExist);
-                    } else {
-                        reject(['Category does not exist']);
-                    }
-                })
-                .catch(() => reject(['Category does not exist']));
         });
     }
 
@@ -102,22 +89,6 @@ class CategoryController {
                     reject(['These category belongs to products and can not be deleted']);
                 } else {
                     resolve(category);
-                }
-            })
-            .catch(reject);
-        });
-    }
-    
-    static checkCategoryNameExist(category) {
-        return new Promise((resolve, reject) => {
-            Category.findOne({
-                name: category.name.toLowerCase()
-            })
-            .then((categoryExist) => {
-                if (categoryExist) {
-                    reject(['This category name is already in used'])
-                } else {
-                    resolve();
                 }
             })
             .catch(reject);

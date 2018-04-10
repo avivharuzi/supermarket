@@ -1,6 +1,7 @@
 const User = require('./../models/user.model');
 
 const ValidationHandler = require('./../handlers/validation.handler');
+const MongooseHandler = require('./../handlers/mongoose.handler');
 
 class UserController {
     static checkUserForLogin(user) {
@@ -107,28 +108,12 @@ class UserController {
                 reject(errors);
             } else {
                 Promise.all([
-                    UserController.checkExistInUserByField('email', user.email.toLowerCase()),
-                    UserController.checkExistInUserByField('identityCard', user.identityCard)
+                    MongooseHandler.checkIfAlreadyExist('User', 'email', user.email.toLowerCase()),
+                    MongooseHandler.checkIfAlreadyExist('User', 'identityCard', user.identityCard)
                 ])
                 .then(() => resolve(user))
                 .catch(reject);
             }
-        });
-    }
-
-    static checkExistInUserByField(field, value) {
-        return new Promise((resolve, reject) => {
-            User.findOne({
-                [field]: value
-            })
-            .then((userExist) => {
-                if (userExist) {
-                    reject([`This ${field} is already in used`])
-                } else {
-                    resolve();
-                }
-            })
-            .catch(reject);
         });
     }
 }

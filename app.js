@@ -8,13 +8,10 @@ const helmet = require('helmet');
 const cors = require('cors');
 const path = require('path');
 
+const routes = require('./routes/index');
+
 mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://127.0.0.1:27017/supermarket');
-
-const authRoute = require('./routes/auth.route');
-const overallRoute = require('./routes/overall.route');
-const productRoute = require('./routes/product.route');
-const categoryRoute = require('./routes/category.route');
 
 const app = express();
 
@@ -28,9 +25,6 @@ app.use(fileUpload());
 
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
-app.use('/auth', authRoute);
-app.use('/overall', overallRoute);
-app.use('/api/product', productRoute);
-app.use('/api/category', categoryRoute);
+routes(app);
 
 module.exports = app;
