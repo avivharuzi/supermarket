@@ -1,3 +1,15 @@
-<p>
-  category-form works!
-</p>
+<div class="container mb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-12">
+      <app-message [type]="typeMessage" [message]="categoryMessage"></app-message>
+      <form [formGroup]="categoryForm" (ngSubmit)="setCategoryForm()" autocomplete="off" novalidate>
+        <div class="form-group">
+          <label>Category Name</label>
+          <input type="text" class="form-control" [ngClass]="getStatus('name')" placeholder="Category Name" formControlName="name">
+          <app-error-form [control]="getControl('name')"></app-error-form>
+        </div>
+        <button class="btn btn-block btn-success">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

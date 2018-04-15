@@ -93,7 +93,7 @@ class ProductController {
                 errors.push('Product category is invalid');
             }
 
-            if (ValidationHandler.regex(product.price, /^[0-9]{2,155}$/)) {
+            if (ValidationHandler.regex(product.price, /^[0-9.]{1,155}$/)) {
                 product.price = ValidationHandler.testInput(product.price);
             } else {
                 errors.push('Product price is invalid');

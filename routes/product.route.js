@@ -20,7 +20,7 @@ router.get('/:pageNumber/:perPage', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    ProductController.validateProduct(req.body, req.files)
+    ProductController.validateProduct(JSON.parse(req.body.product), req.files)
         .then(ProductController.validateAndUploadProductPicture)
         .then(ProductController.saveProduct)
         .then((newProduct) => RouteHandler.success(res, 'Product added successfully', newProduct))
@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:productId', (req, res) => {
-    ProductController.validateProduct(req.body, req.files, req.params.productId)
+    ProductController.validateProduct(JSON.parse(req.body.product), req.files, req.params.productId)
         .then(ProductController.validateAndUploadProductPicture)
         .then(ProductController.checkAndDeleteOldImage)
         .then(ProductController.updateProduct)

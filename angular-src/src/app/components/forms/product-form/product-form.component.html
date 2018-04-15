@@ -1,3 +1,46 @@
-<p>
-  product-form works!
-</p>
+<div *ngIf="categories">
+  <div *ngIf="categories && categories.length; else noCategories">
+    <div class="jumbotron bg-primary p-3 mb-3 text-white text-center">
+      <h3>Add Product</h3>
+    </div>
+    <app-message [message]="productMessage?.message" [type]="productMessage?.type"></app-message>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" autocomplete="off" novalidate>
+      <div class="form-group">
+        <input type="text" name="name" formControlName="name" [ngClass]="getStatus('name')" class="form-control" placeholder="Product Name" autofocus>
+        <app-error-form [control]="getControl('name')"></app-error-form>
+      </div>
+      <div class="form-group">
+        <select formControlName="category" class="form-control">
+          <option *ngFor="let category of categories" [value]="category._id">{{ category.name | capitalize }}</option>
+        </select>
+        <button type="button" class="btn btn-link p-0" (click)="openModal(addNewCategory)">Add new category</button>
+      </div>
+      <div class="form-group">
+        <input type="number" name="price" formControlName="price" [ngClass]="getStatus('price')" class="form-control" placeholder="Price" autofocus>
+        <app-error-form [control]="getControl('price')"></app-error-form>
+      </div>
+      <app-file-input [files]="files" [multiple]="false" (changedFiles)="onChangeFiles($event)"></app-file-input>
+      <div class="form-group">
+        <input type="submit" name="login" class="btn bg-success btn-block text-light" value="Submit">
+      </div>
+    </form>
+  </div>
+  <ng-template #noCategories>
+    <div class="col-lg-12">
+      <app-message [type]="'warning'" [message]="'There are not categories right you need at least one category to add post'"></app-message>
+      <button type="button" class="btn btn-block btn-primary" (click)="openModal(addNewCategory)">
+        <i class="fa fa-plus mr-3"></i>Add new category</button>
+    </div>
+  </ng-template>
+  <ng-template #addNewCategory>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Add New Category</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-category-form></app-category-form>
+    </div>
+  </ng-template>
+</div>

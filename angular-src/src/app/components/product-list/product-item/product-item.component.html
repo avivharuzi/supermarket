@@ -1,0 +1,8 @@
+<div class="card mb-5">
+  <app-picture [class]="'card-img-top text-center'" [src]="product.picture" [width]="250" [height]="250"></app-picture>
+  <div class="card-body text-center">
+    <h5 class="card-title">{{ product.name | ucwords }}</h5>
+    <p class="text-muted">{{ product.category.name | ucwords }}</p>
+    <p class="card-text">{{ product.price | currency:'USD' }}</p>
+  </div>
+</div>

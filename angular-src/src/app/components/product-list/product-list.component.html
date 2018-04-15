@@ -1,0 +1,5 @@
+<div *ngIf="products && products.length" class="row">
+  <div *ngFor="let product of products" class="col-lg-3">
+    <app-product-item [product]="product"></app-product-item>
+  </div>
+</div>

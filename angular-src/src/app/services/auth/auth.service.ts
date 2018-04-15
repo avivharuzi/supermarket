@@ -45,7 +45,7 @@ export class AuthService {
       if (data) {
         this.token = data.token;
         this.userData = data.userData;
-        this.authFullname.next(data.userData.fullname);
+        this.authFullname.next(data.userData.firstname + ' ' + data.userData.lastname);
         this.authSubject.next(true);
         this.navigateToDefaultRouteByRole();
         return true;
@@ -110,7 +110,7 @@ export class AuthService {
     if (localStorage.getItem('user_token')) {
       this.checkToken().subscribe((res: any) => {
         this.authSubject.next(true);
-        this.authFullname.next(res.fullname);
+        this.authFullname.next(res.firstname + ' ' + res.lastname);
       }, (err) => {
         this.logout();
       });

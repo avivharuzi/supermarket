@@ -22,7 +22,7 @@ export class ValidationService {
 
   statusClass(control): string {
     if (!(control.errors) && !(control.pristine)) {
-      return 'is-valid';
+      return '';
     } else if ((control.errors) && !(control.pristine)) {
       return 'is-invalid';
     }
