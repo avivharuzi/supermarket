@@ -16,7 +16,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
   public limitPage: number;
   public finished: boolean;
 
+  public selectedProduct: any;
+
   public newProductSub: Subscription;
+  public updatedProductSub: Subscription;
 
   constructor(
     private productService: ProductService,
@@ -31,6 +34,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.getProducts();
     this.onNewProduct();
+    this.onUpdatedProduct();
   }
 
   ngOnDestroy() {
@@ -58,6 +62,16 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.newProductSub = this.actionService.newProduct.subscribe((product: any) => {
       if (this.finished) {
         this.products.push(product);
+      }
+    });
+  }
+
+  onUpdatedProduct(): void {
+    this.updatedProductSub = this.actionService.updatedProduct.subscribe((updatedProduct: any) => {
+      for (let i = 0; i < this.products.length; i++) {
+        if (this.products[i]._id === updatedProduct._id) {
+          this.products[i] = updatedProduct;
+        }
       }
     });
   }

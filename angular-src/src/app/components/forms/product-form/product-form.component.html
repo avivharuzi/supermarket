@@ -1,7 +1,8 @@
+<button class="btn btn-dark btn-block mb-3" (click)="defaultProductForm()"><i class="fa fa-plus mr-3"></i>Add New Product</button>
 <div *ngIf="categories">
   <div *ngIf="categories && categories.length; else noCategories">
     <div class="jumbotron bg-primary p-3 mb-3 text-white text-center">
-      <h3>Add Product</h3>
+      <h3>{{ title }}</h3>
     </div>
     <app-message [message]="productMessage?.message" [type]="productMessage?.type" [isOpen]="productMessage?.isOpen" (closedMessage)="onClose()"></app-message>
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()" autocomplete="off" novalidate>

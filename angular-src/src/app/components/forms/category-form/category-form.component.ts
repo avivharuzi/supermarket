@@ -52,7 +52,7 @@ export class CategoryFormComponent implements OnInit {
     }
   }
 
-  setAddCategory() {
+  setAddCategory(): void {
     const category: Category = new Category(
       this.categoryForm.get('name').value
     );
@@ -68,7 +68,7 @@ export class CategoryFormComponent implements OnInit {
     });
   }
 
-  setEditCategory() {
+  setEditCategory(): void {
     const category: Category = new Category(
       this.categoryForm.get('name').value,
       this.editCategory.name
@@ -91,11 +91,11 @@ export class CategoryFormComponent implements OnInit {
     }
   }
 
-  getControl(controlName) {
+  getControl(controlName): any {
     return this.categoryForm.get(controlName);
   }
 
-  getStatus(controlName) {
+  getStatus(controlName): string {
     return this.validationService.statusClass(this.getControl(controlName));
   }
 

@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { ActionService } from '../../services/action/action.service';
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -8,8 +10,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProductListComponent implements OnInit {
   @Input() public products: any;
 
-  constructor() { }
+  constructor(
+    private actionService: ActionService
+  ) { }
 
   ngOnInit() {
+  }
+
+  onSelectProduct(product: any): void {
+    this.actionService.selectedProduct.next(product);
   }
 }

@@ -22,6 +22,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class ProductFormComponent implements OnInit, OnDestroy {
   public productForm: FormGroup;
   public productMessage: Message;
+  public title: string;
 
   public categories: any[];
 
@@ -32,6 +33,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   public modalRef: BsModalRef;
 
   public newCategorySub: Subscription;
+  public editProductSub: Subscription;
 
   constructor(
     private validationService: ValidationService,
@@ -39,12 +41,15 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     private categoryService: CategoryService,
     private modalService: BsModalService,
     private actionService: ActionService
-  ) { }
+  ) {
+    this.title = 'Add Product';
+  }
 
   ngOnInit() {
     this.createProductForm();
     this.getCategories();
     this.onNewCategory();
+    this.onEditProduct();
   }
 
   ngOnDestroy() {
@@ -73,17 +78,17 @@ export class ProductFormComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (this.productForm.valid) {
-      if (this.files) {
-        const product: Product = new Product(
-          this.productForm.get('name').value,
-          this.getControl('category').value,
-          this.getControl('price').value,
-          this.files
-        );
+      const product: Product = new Product(
+        this.productForm.get('name').value,
+        this.getControl('category').value,
+        this.getControl('price').value,
+        null
+      );
 
-        this.setProduct(product);
+      if (this.editProduct) {
+        this.updateProduct(product);
       } else {
-        this.productMessage = new Message('danger', 'You need to provide image to create product');
+        this.setProduct(product);
       }
     } else {
       this.validationService.dirtyAllInputs(this.productForm);
@@ -91,10 +96,30 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   }
 
   setProduct(product: Product): void {
-    this.productService.setProduct(product).subscribe((res: any) => {
+    if (this.files) {
+      product.picture = this.files;
+
+      this.productService.setProduct(product).subscribe((res: any) => {
+        this.productMessage = new Message('success', res.message);
+        this.resetProductForm();
+        this.actionService.newProduct.next(res.data);
+      }, (err) => {
+        this.productMessage = new Message('danger', err.errors);
+      });
+    } else {
+      this.productMessage = new Message('danger', 'You need to provide image to create product');
+    }
+  }
+
+  updateProduct(product: Product): void {
+    product.picture = this.files;
+    product.existName = this.editProduct.name;
+    product.existPicture = this.editProduct.picture;
+
+    this.productService.updateProduct(product, this.editProduct._id).subscribe((res: any) => {
       this.productMessage = new Message('success', res.message);
-      this.resetProductForm();
-      this.actionService.newProduct.next(res.data);
+      this.actionService.updatedProduct.next(res.data);
+      this.editProduct.picture = res.data.picture;
     }, (err) => {
       this.productMessage = new Message('danger', err.errors);
     });
@@ -106,8 +131,6 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       if (!this.editProduct) {
         this.productForm.controls['category'].setValue(this.categories[0]._id);
       }
-    }, (err) => {
-      console.log(err);
     });
   }
 
@@ -115,11 +138,11 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     this.files = files;
   }
 
-  getControl(controlName: string) {
+  getControl(controlName: string): any {
     return this.productForm.get(controlName);
   }
 
-  getStatus(controlName: string) {
+  getStatus(controlName: string): string {
     return this.validationService.statusClass(this.getControl(controlName));
   }
 
@@ -130,19 +153,43 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   resetProductForm(): void {
     this.productForm.patchValue({
       name: null,
-      price: null
+      price: null,
+      category: this.categories[0]._id
     });
     this.files = null;
     this.validationService.pristineAllInputs(this.productForm);
   }
 
-  onClose() {
+  onClose(): void {
     this.productMessage.isOpen = false;
   }
 
-  onNewCategory() {
+  onNewCategory(): void {
     this.newCategorySub = this.actionService.newCategory.subscribe((category: any) => {
       this.categories.push(category);
     });
+  }
+
+  createEditProductForm(): void {
+    this.title = 'Edit Product';
+    this.productForm.patchValue({
+      name: this.editProduct.name,
+      price: this.editProduct.price,
+      category: this.editProduct.category._id
+    });
+  }
+
+  onEditProduct(): void {
+    this.editProductSub = this.actionService.selectedProduct.subscribe((product) => {
+      if (product) {
+        this.editProduct = product;
+        this.createEditProductForm();
+      }
+    });
+  }
+
+  defaultProductForm(): void {
+    this.resetProductForm();
+    this.editProduct = null;
   }
 }

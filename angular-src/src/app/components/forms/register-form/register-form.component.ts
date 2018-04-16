@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-
 import { Validator } from '../../../models/validator.model';
+
 import { ValidationService } from '../../../services/validation/validation.service';
 import { AuthService } from '../../../services/auth/auth.service';
+
 import { Customer } from '../../../models/customer.model';
 import { User } from '../../../models/user.model';
 import { Message } from '../../../models/message.model';
@@ -100,11 +101,11 @@ export class RegisterFormComponent implements OnInit {
     }
   }
 
-  getControl(group, control) {
+  getControl(group, control): any {
     return this.registerForm.get(group + '.' + control);
   }
 
-  getStatus(group, control) {
+  getStatus(group, control): string {
     return this.validationService.statusClass(this.getControl(group, control));
   }
 
