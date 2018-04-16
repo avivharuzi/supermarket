@@ -2,7 +2,8 @@
   <div class="jumbotron bg-primary p-3 mb-3 text-white text-center">
     <h3>Regiser</h3>
   </div>
-  <app-message [message]="registerMessage" [type]="messageType"></app-message>
+  <app-message [message]="registerMessage?.message" [type]="registerMessage?.type"
+  [isOpen]="registerMessage?.isOpen" (closedMessage)="onClose()"></app-message>
   <div formGroupName="userDetails" *ngIf="step === 1" class="mt-5">
     <div class="form-group">
       <label>Identity Card</label>

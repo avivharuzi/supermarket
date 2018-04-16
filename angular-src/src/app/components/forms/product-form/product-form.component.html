@@ -3,7 +3,7 @@
     <div class="jumbotron bg-primary p-3 mb-3 text-white text-center">
       <h3>Add Product</h3>
     </div>
-    <app-message [message]="productMessage?.message" [type]="productMessage?.type"></app-message>
+    <app-message [message]="productMessage?.message" [type]="productMessage?.type" [isOpen]="productMessage?.isOpen" (closedMessage)="onClose()"></app-message>
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()" autocomplete="off" novalidate>
       <div class="form-group">
         <input type="text" name="name" formControlName="name" [ngClass]="getStatus('name')" class="form-control" placeholder="Product Name" autofocus>

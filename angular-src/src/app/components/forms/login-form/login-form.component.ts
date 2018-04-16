@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Validator } from '../../../models/validator.model';
+
 import { ValidationService } from '../../../services/validation/validation.service';
 import { AuthService } from '../../../services/auth/auth.service';
+
 import { User } from '../../../models/user.model';
+import { Validator } from '../../../models/validator.model';
+import { Message } from '../../../models/message.model';
 
 @Component({
   selector: 'app-login-form',
@@ -13,8 +16,7 @@ import { User } from '../../../models/user.model';
 export class LoginFormComponent implements OnInit {
   public loginForm: FormGroup;
 
-  public messageType: string;
-  public loginMessage: string;
+  public loginMessage: Message;
 
   constructor(
     private validationService: ValidationService,
@@ -65,8 +67,11 @@ export class LoginFormComponent implements OnInit {
     this.authService.login(user).subscribe((res: any) => {
       this.loginForm.reset();
     }, (err) => {
-      this.loginMessage = err.errors;
-      this.messageType = 'danger';
+      this.loginMessage = new Message('danger', err.errors);
     });
+  }
+
+  onClose(): void {
+    this.loginMessage.isOpen = false;
   }
 }

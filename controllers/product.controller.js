@@ -50,7 +50,12 @@ class ProductController {
                 price: product.price,
                 picture: product.picture
             })
-            .then(resolve)
+            .then((newProduct) => {
+                Product.findById(newProduct._id)
+                .populate('category')
+                .then(resolve)
+                .catch(reject);
+            })
             .catch(reject);
         });
     }

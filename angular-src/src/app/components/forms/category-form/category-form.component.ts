@@ -3,9 +3,11 @@ import { FormGroup, FormControl } from '@angular/forms';
 
 import { Validator } from '../../../models/validator.model';
 import { Category } from '../../../models/category.model';
+import { Message } from '../../../models/message.model';
 
 import { CategoryService } from '../../../services/category/category.service';
 import { ValidationService } from '../../../services/validation/validation.service';
+import { ActionService } from '../../../services/action/action.service';
 
 @Component({
   selector: 'app-category-form',
@@ -15,14 +17,14 @@ import { ValidationService } from '../../../services/validation/validation.servi
 export class CategoryFormComponent implements OnInit {
   public categoryForm: FormGroup;
 
-  public categoryMessage: any;
-  public typeMessage: string;
+  public categoryMessage: Message;
 
   @Input() public editCategory: any;
 
   constructor(
     private categoryService: CategoryService,
-    private validationService: ValidationService
+    private validationService: ValidationService,
+    private actionService: ActionService
   ) { }
 
   ngOnInit() {
@@ -57,13 +59,12 @@ export class CategoryFormComponent implements OnInit {
 
     this.categoryService.setCategory(category).subscribe((res: any) => {
       if (res) {
-        this.categoryMessage = res.message;
-        this.typeMessage = 'success';
+        this.categoryMessage = new Message('success', res.message);
         this.categoryForm.reset();
+        this.actionService.newCategory.next(res.data);
       }
     }, (err) => {
-      this.categoryMessage = err.errors;
-      this.typeMessage = 'danger';
+      this.categoryMessage = new Message('danger', err.errors);
     });
   }
 
@@ -75,12 +76,10 @@ export class CategoryFormComponent implements OnInit {
 
     this.categoryService.updateCategory(category, this.editCategory._id).subscribe((res: any) => {
       if (res) {
-        this.categoryMessage = res.message;
-        this.typeMessage = 'success';
+        this.categoryMessage = new Message('success', res.message);
       }
     }, (err) => {
-      this.categoryMessage = err.errors;
-      this.typeMessage = 'danger';
+      this.categoryMessage = new Message('danger', err.errors);
     });
   }
 
@@ -98,5 +97,9 @@ export class CategoryFormComponent implements OnInit {
 
   getStatus(controlName) {
     return this.validationService.statusClass(this.getControl(controlName));
+  }
+
+  onClose(): void {
+    this.categoryMessage.isOpen = false;
   }
 }

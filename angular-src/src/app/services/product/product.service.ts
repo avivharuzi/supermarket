@@ -17,8 +17,8 @@ export class ProductService {
     private http: HttpClient
   ) { }
 
-  getProducts(): Observable<any> {
-    return this.http.get(BASE_PRODUCT_URL).map((res: any) => {
+  getProducts(currentPage: number, limitPage: number): Observable<any> {
+    return this.http.get(`${BASE_PRODUCT_URL}/${currentPage}/${limitPage}`).map((res: any) => {
       return res;
     })
     .catch((err: HttpErrorResponse) => Observable.throw(err.error));

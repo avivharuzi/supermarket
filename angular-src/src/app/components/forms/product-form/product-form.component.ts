@@ -1,23 +1,25 @@
-import { Component, OnInit, Input, TemplateRef } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-
 import { Validator } from '../../../models/validator.model';
 
 import { CategoryService } from '../../../services/category/category.service';
 import { ValidationService } from '../../../services/validation/validation.service';
 import { ProductService } from '../../../services/product/product.service';
+import { ActionService } from '../../../services/action/action.service';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { Product } from '../../../models/product.model';
 import { Message } from '../../../models/message.model';
 
+import { Subscription } from 'rxjs/Subscription';
+
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.scss']
 })
-export class ProductFormComponent implements OnInit {
+export class ProductFormComponent implements OnInit, OnDestroy {
   public productForm: FormGroup;
   public productMessage: Message;
 
@@ -29,16 +31,24 @@ export class ProductFormComponent implements OnInit {
 
   public modalRef: BsModalRef;
 
+  public newCategorySub: Subscription;
+
   constructor(
     private validationService: ValidationService,
     private productService: ProductService,
     private categoryService: CategoryService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private actionService: ActionService
   ) { }
 
   ngOnInit() {
     this.createProductForm();
     this.getCategories();
+    this.onNewCategory();
+  }
+
+  ngOnDestroy() {
+    this.newCategorySub.unsubscribe();
   }
 
   createProductForm(): void {
@@ -84,6 +94,7 @@ export class ProductFormComponent implements OnInit {
     this.productService.setProduct(product).subscribe((res: any) => {
       this.productMessage = new Message('success', res.message);
       this.resetProductForm();
+      this.actionService.newProduct.next(res.data);
     }, (err) => {
       this.productMessage = new Message('danger', err.errors);
     });
@@ -123,5 +134,15 @@ export class ProductFormComponent implements OnInit {
     });
     this.files = null;
     this.validationService.pristineAllInputs(this.productForm);
+  }
+
+  onClose() {
+    this.productMessage.isOpen = false;
+  }
+
+  onNewCategory() {
+    this.newCategorySub = this.actionService.newCategory.subscribe((category: any) => {
+      this.categories.push(category);
+    });
   }
 }

@@ -17,6 +17,7 @@ import { FileInputModule } from './modules/file-input/file-input.module';
 
 // Extra Modules
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 // Components
 import { AppComponent } from './app.component';
@@ -44,6 +45,7 @@ import { AuthService } from './services/auth/auth.service';
 import { OverallService } from './services/overall/overall.service';
 import { ProductService } from './services/product/product.service';
 import { CategoryService } from './services/category/category.service';
+import { ActionService } from './services/action/action.service';// Pipes
 
 // Pipes
 import { SearchPipe } from './pipes/search/search.pipe';
@@ -104,7 +106,8 @@ import { AuthGuard } from './guards/auth/auth.guard';
     LoadingModule.forRoot(),
     PictureModule.forRoot(),
     FileInputModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    InfiniteScrollModule
   ],
   providers: [
     ValidationService,
@@ -112,6 +115,7 @@ import { AuthGuard } from './guards/auth/auth.guard';
     OverallService,
     ProductService,
     CategoryService,
+    ActionService,
     AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,

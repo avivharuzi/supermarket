@@ -6,6 +6,7 @@ import { ValidationService } from '../../../services/validation/validation.servi
 import { AuthService } from '../../../services/auth/auth.service';
 import { Customer } from '../../../models/customer.model';
 import { User } from '../../../models/user.model';
+import { Message } from '../../../models/message.model';
 
 @Component({
   selector: 'app-register-form',
@@ -15,8 +16,7 @@ import { User } from '../../../models/user.model';
 export class RegisterFormComponent implements OnInit {
   public registerForm: FormGroup;
 
-  public messageType: string;
-  public registerMessage: string;
+  public registerMessage: Message;
 
   public step: number;
 
@@ -132,8 +132,11 @@ export class RegisterFormComponent implements OnInit {
 
       this.authService.login(user).subscribe();
     }, (err) => {
-      this.messageType = 'danger';
-      this.registerMessage = err.errors;
+      this.registerMessage = new Message('danger', err.errors);
     });
+  }
+
+  onClose(): void {
+    this.registerMessage.isOpen = false;
   }
 }
