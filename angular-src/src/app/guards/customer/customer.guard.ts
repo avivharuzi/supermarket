@@ -12,10 +12,8 @@ export class CustomerGuard implements CanActivate, CanActivateChild {
   canActivate(): Promise<boolean> {
     return new Promise((resolve) => {
       this.authService.checkRoleOfUser('customer').subscribe((res: any) => {
-        console.log('true');
         resolve(true);
       }, (err) => {
-        console.log('false');
         resolve(false);
       });
     });

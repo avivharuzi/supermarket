@@ -1,4 +1,5 @@
 @import "scss/custom/bootstrap.scss";
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
 nav {
   margin-top: 1.5rem;
@@ -74,4 +75,13 @@ nav ul li a:hover {
 
 .pointer {
   cursor: pointer;
+}
+
+.ng-select .ng-select-container {
+  min-height: 48px;
+}
+
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-placeholder {
+  position: static !important;
+  z-index: 1;
 }

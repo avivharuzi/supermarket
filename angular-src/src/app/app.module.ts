@@ -18,6 +18,7 @@ import { FileInputModule } from './modules/file-input/file-input.module';
 // Extra Modules
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 // Components
 import { AppComponent } from './app.component';
@@ -109,6 +110,7 @@ import { AdminGuard } from './guards/admin/admin.guard';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    NgSelectModule,
     FormsModule,
     ReactiveFormsModule,
     RoutingModule,

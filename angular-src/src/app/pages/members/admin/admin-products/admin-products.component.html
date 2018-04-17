@@ -1,12 +1,8 @@
 <div class="row">
   <div class="col-md-4">
-    <app-product-form [editProduct]="selectedProduct"></app-product-form>
+    <app-product-form></app-product-form>
   </div>
   <div class="col-md-8">
-    <app-product-list [products]="products"></app-product-list>
-    <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()"></div>
-    <div *ngIf="!finished && products.length" class="text-center">
-      <img src="assets/images/tools/loading.gif" width="100px" height="100px">
-    </div>
+    <app-product-list></app-product-list>
   </div>
 </div>
