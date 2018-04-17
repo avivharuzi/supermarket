@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
+import { AuthService } from './services/auth/auth.service';
+
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
@@ -15,11 +17,13 @@ export class AppComponent implements OnInit  {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private titleService: Title
+    private titleService: Title,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
     this.changeTitle();
+    this.authService.checkUserAfterRefresh();
   }
 
   changeTitle(): void {

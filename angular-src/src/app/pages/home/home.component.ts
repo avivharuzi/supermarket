@@ -10,17 +10,9 @@ export class HomeComponent implements OnInit {
   public isLoggedIn: boolean;
 
   constructor(
-    private authService: AuthService
+    public authService: AuthService
   ) { }
 
   ngOnInit() {
-    this.authService.checkUserAfterRefresh();
-    this.authSubject();
-  }
-
-  authSubject(): void {
-    this.authService.authSubject.subscribe((res: any) => {
-      this.isLoggedIn = res;
-    });
   }
 }

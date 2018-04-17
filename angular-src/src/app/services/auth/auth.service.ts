@@ -17,8 +17,8 @@ import 'rxjs/add/observable/throw';
 export class AuthService {
   private _token: string;
 
-  public authSubject: Subject<any> = new Subject<any>();
-  public authFullname: Subject<any> = new Subject<any>();
+  public isLoggedIn: boolean;
+  public fullname: string;
   public userData: any;
 
   constructor(
@@ -26,6 +26,7 @@ export class AuthService {
     private router: Router
   ) {
     this.token = localStorage.getItem('user_token');
+    this.isLoggedIn = null;
   }
 
   get token(): string {
@@ -45,8 +46,8 @@ export class AuthService {
       if (data) {
         this.token = data.token;
         this.userData = data.userData;
-        this.authFullname.next(data.userData.firstname + ' ' + data.userData.lastname);
-        this.authSubject.next(true);
+        this.fullname = data.userData.firstname + ' ' + data.userData.lastname;
+        this.isLoggedIn = true;
         this.navigateToDefaultRouteByRole();
         return true;
       } else {
@@ -80,8 +81,8 @@ export class AuthService {
     this.token = null;
     localStorage.removeItem('user_token');
     this.router.navigate(['/']);
-    this.authSubject.next(false);
-    this.authFullname.next(null);
+    this.isLoggedIn = false;
+    this.fullname = null;
   }
 
   checkToken(existToken?: string): Observable<any> {
@@ -109,14 +110,14 @@ export class AuthService {
   checkUserAfterRefresh() {
     if (localStorage.getItem('user_token')) {
       this.checkToken().subscribe((res: any) => {
-        this.authSubject.next(true);
-        this.authFullname.next(res.firstname + ' ' + res.lastname);
+        this.isLoggedIn = true;
+        this.fullname = res.firstname + ' ' + res.lastname;
       }, (err) => {
         this.logout();
       });
     } else {
-      this.authSubject.next(false);
-      this.authFullname.next(null);
+      this.isLoggedIn = false;
+      this.fullname = null;
     }
   }
 

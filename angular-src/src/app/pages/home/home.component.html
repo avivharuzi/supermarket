@@ -1,15 +1,17 @@
 <div class="row justify-content-center">
   <div class="col-lg-4">
-    <app-login-form *ngIf="!isLoggedIn; else loggedIn"></app-login-form>
-    <ng-template #loggedIn>
-      <app-shopping-message></app-shopping-message>
-    </ng-template>
+    <div *ngIf="authService?.isLoggedIn !== null">
+      <app-login-form *ngIf="!authService.isLoggedIn; else loggedIn"></app-login-form>
+      <ng-template #loggedIn>
+        <app-shopping-message></app-shopping-message>
+      </ng-template>
+    </div>
   </div>
   <div class="col-lg-4">
     <app-about></app-about>
   </div>
   <div class="col-lg-4">
     <app-store-count></app-store-count>
-    <app-notification *ngIf="isLoggedIn"></app-notification>
+    <app-notification *ngIf="authService.isLoggedIn"></app-notification>
   </div>
 </div>

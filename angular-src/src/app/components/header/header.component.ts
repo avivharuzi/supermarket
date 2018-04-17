@@ -12,22 +12,10 @@ export class HeaderComponent implements OnInit {
   public fullname: string;
 
   constructor(
-    private authService: AuthService
+    public authService: AuthService
   ) { }
 
   ngOnInit() {
-    this.authService.checkUserAfterRefresh();
-    this.authSubject();
-  }
-
-  authSubject(): void {
-    this.authService.authSubject.subscribe((res: any) => {
-      this.isLoggedIn = res;
-    });
-
-    this.authService.authFullname.subscribe((res: any) => {
-      this.fullname = res;
-    });
   }
 
   logout(): void {
