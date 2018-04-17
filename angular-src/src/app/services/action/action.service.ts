@@ -7,4 +7,5 @@ export class ActionService {
   public newProduct: Subject<any> = new Subject<any>();
   public updatedProduct: Subject<any> = new Subject<any>();
   public selectedProduct: Subject<any> = new Subject<any>();
+  public selectedCartItem: Subject<any> = new Subject<any>();
 }

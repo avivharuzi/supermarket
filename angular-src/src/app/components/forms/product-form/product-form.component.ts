@@ -191,5 +191,6 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   defaultProductForm(): void {
     this.resetProductForm();
     this.editProduct = null;
+    this.title = 'Add Product';
   }
 }

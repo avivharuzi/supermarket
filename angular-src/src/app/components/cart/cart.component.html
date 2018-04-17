@@ -1,10 +1,10 @@
-<div class="card">
+<div *ngIf="cart && cart.items.length; else emptyCart" class="card">
   <div class="card-header text-dark">
     <i class="fa fa-shopping-cart mr-3"></i>Shopping Cart
     <div class="clearfix"></div>
   </div>
   <div class="card-body">
-    <app-cart-item></app-cart-item>
+    <app-cart-item *ngFor="let item of cart.items" [item]="item"></app-cart-item>
   </div>
   <div class="card-footer">
     <div class="float-right">
@@ -17,3 +17,6 @@
     </div>
   </div>
 </div>
+<ng-template #emptyCart>
+  <app-message [message]="'Your cart is empty'" [type]="'info'" [dismissible]="false"></app-message>
+</ng-template>

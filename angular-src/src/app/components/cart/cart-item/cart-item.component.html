@@ -1,29 +1,29 @@
 <div class="row">
   <div class="col-sm-2 text-center">
-    <img alt="prewiew" class="w-100" height="" src="http://placehold.it/120x80" width="">
+    <app-picture [src]="item.product.picture" [class]="'w-100'"></app-picture>
   </div>
   <div class="col-sm-4">
     <h4 class="product-name">
-      <strong>Apple</strong>
+      <strong>{{ item.product.name | ucwords }}</strong>
     </h4>
     <h4>
-      <small class="text-muted">Fruits</small>
+      <small class="text-muted">{{ item.product.category.name | ucwords }}</small>
     </h4>
   </div>
   <div class="col-sm-6 text-center row">
     <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
       <h6>
-        <strong>$25.00</strong>
+        <strong>{{ item.price | currency:'USD' }}</strong>
       </h6>
     </div>
     <div class="col-4 col-sm-4 col-md-4">
       <div class="quantity">
-        <input class="form-control" max="99" min="1" step="1" title="Qty" type="number" value="1">
+        <input class="form-control" [value]="item.amount" max="99" min="1" step="1" title="Qty" type="number" value="1">
       </div>
     </div>
     <div class="col-2 col-sm-2 col-md-2 text-right">
       <button class="btn btn-outline-danger btn-xs" type="button">
-        <i aria-hidden="true" class="fa fa-trash"></i>
+        <i class="fa fa-trash"></i>
       </button>
     </div>
   </div>
