@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { User } from './../../models/user.model';
 import { Customer } from '../../models/customer.model';
-import { LOGIN_URL, REGISTER_URL, CHECK_TOKEN_URL } from './../../constants/urls';
+import { LOGIN_URL, REGISTER_URL, CHECK_TOKEN_URL, CHECK_ROLE_OF_USER } from './../../constants/urls';
 
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -69,7 +69,7 @@ export class AuthService {
         this.router.navigate(['/']);
         break;
       case 'admin':
-        this.router.navigate(['/products']);
+        this.router.navigate(['/members/admin/products']);
         break;
       default:
         this.router.navigate(['/']);
@@ -120,10 +120,10 @@ export class AuthService {
     }
   }
 
-  // checkRoleOfUser(role: string) {
-  //   return this.http.post(`${CHECK_ROLE_OF_USER}/${role}`, null).map((res: any) => {
-  //     return res;
-  //   })
-  //   .catch((err: HttpErrorResponse) => Observable.throw(err));
-  // }
+  checkRoleOfUser(role: string) {
+    return this.http.post(`${CHECK_ROLE_OF_USER}/${role}`, null).map((res: any) => {
+      return res;
+    })
+    .catch((err: HttpErrorResponse) => Observable.throw(err));
+  }
 }

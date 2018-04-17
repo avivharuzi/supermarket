@@ -28,7 +28,7 @@ import { RegisterFormComponent } from './components/forms/register-form/register
 import { ProductFormComponent } from './components/forms/product-form/product-form.component';
 import { CategoryFormComponent } from './components/forms/category-form/category-form.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { ProductsComponent } from './pages/products/products.component';
+import { AdminProductsComponent } from './pages/members/admin/admin-products/admin-products.component';
 import { AboutComponent } from './components/about/about.component';
 import { StoreCountComponent } from './components/store-count/store-count.component';
 import { StoreCountItemComponent } from './components/store-count/store-count-item/store-count-item.component';
@@ -38,6 +38,9 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { ProductItemComponent } from './components/product-list/product-item/product-item.component';
 import { ErrorPageComponent } from './components/errors/error-page/error-page.component';
 import { ErrorFormComponent } from './components/errors/error-form/error-form.component';
+import { MembersComponent } from './pages/members/members.component';
+import { CustomerComponent } from './pages/members/customer/customer.component';
+import { AdminComponent } from './pages/members/admin/admin.component';
 
 // Services
 import { ValidationService } from './services/validation/validation.service';
@@ -45,7 +48,7 @@ import { AuthService } from './services/auth/auth.service';
 import { OverallService } from './services/overall/overall.service';
 import { ProductService } from './services/product/product.service';
 import { CategoryService } from './services/category/category.service';
-import { ActionService } from './services/action/action.service';// Pipes
+import { ActionService } from './services/action/action.service';
 
 // Pipes
 import { SearchPipe } from './pipes/search/search.pipe';
@@ -63,6 +66,8 @@ import { AuthInterceptor } from './interceptors/auth/auth.interceptor';
 
 // Guards
 import { AuthGuard } from './guards/auth/auth.guard';
+import { CustomerGuard } from './guards/customer/customer.guard';
+import { AdminGuard } from './guards/admin/admin.guard';
 
 @NgModule({
   declarations: [
@@ -83,14 +88,17 @@ import { AuthGuard } from './guards/auth/auth.guard';
     ProductFormComponent,
     CategoryFormComponent,
     RegisterComponent,
-    ProductsComponent,
+    AdminProductsComponent,
     AboutComponent,
     StoreCountComponent,
     StoreCountItemComponent,
     ShoppingMessageComponent,
     NotificationComponent,
     ProductListComponent,
-    ProductItemComponent
+    ProductItemComponent,
+    MembersComponent,
+    CustomerComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -117,6 +125,8 @@ import { AuthGuard } from './guards/auth/auth.guard';
     CategoryService,
     ActionService,
     AuthGuard,
+    CustomerGuard,
+    AdminGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

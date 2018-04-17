@@ -20,4 +20,6 @@ export const BASE_CATEGORY_URL: string = `${BASE_API_URL}/category`;
 
 export const BASE_PRODUCT_URL: string = `${BASE_API_URL}/product`;
 
+export const CHECK_ROLE_OF_USER: string = `${BASE_API_URL}/user/role`;
+
 export const NO_AUTHORIZATION_URLS: string[] = [REGISTER_URL, LOGIN_URL, CHECK_TOKEN_URL, OVERALL_PRODUCTS_URL, OVERALL_ORDERS_URL];

@@ -1,16 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { ProductService } from '../../services/product/product.service';
-import { ActionService } from '../../services/action/action.service';
+import { ActionService } from '../../../../services/action/action.service';
+import { ProductService } from '../../../../services/product/product.service';
 
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  selector: 'app-admin-products',
+  templateUrl: './admin-products.component.html',
+  styleUrls: ['./admin-products.component.scss']
 })
-export class ProductsComponent implements OnInit, OnDestroy {
+export class AdminProductsComponent implements OnInit, OnDestroy {
   public products: any[];
   public currentPage: number;
   public limitPage: number;
