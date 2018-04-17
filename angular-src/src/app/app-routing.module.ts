@@ -10,6 +10,7 @@ import { ErrorPageComponent } from './components/errors/error-page/error-page.co
 import { MembersComponent } from './pages/members/members.component';
 import { AdminComponent } from './pages/members/admin/admin.component';
 import { CustomerComponent } from './pages/members/customer/customer.component';
+import { CustomerProductsComponent } from './pages/members/customer/customer-products/customer-products.component';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { CustomerGuard } from './guards/customer/customer.guard';
 import { AdminGuard } from './guards/admin/admin.guard';
@@ -19,7 +20,9 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'Home' } },
   { path: 'register', component: RegisterComponent, data: { title: 'Register' } },
   { path: 'members', component: MembersComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard], children: [
-    { path: 'customer', component: CustomerComponent, canActivate: [CustomerGuard], canActivateChild: [CustomerGuard] },
+    { path: 'customer', component: CustomerComponent, canActivate: [CustomerGuard], canActivateChild: [CustomerGuard], children: [
+      { path: 'products', component: CustomerProductsComponent, data: { title: 'Products' } }
+    ] },
     { path: 'admin', component: AdminComponent, canActivate: [AdminGuard], canActivateChild: [AdminGuard], children: [
       { path: 'products', component: AdminProductsComponent, data: { title: 'Products' } }
     ] }

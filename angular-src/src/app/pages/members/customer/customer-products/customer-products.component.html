@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-8">
+    <app-product-list [customer]="true" [products]="products"></app-product-list>
+    <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()"></div>
+    <div *ngIf="!finished && products.length" class="text-center">
+      <img src="assets/images/tools/loading.gif" width="100px" height="100px">
+    </div>
+  </div>
+</div>

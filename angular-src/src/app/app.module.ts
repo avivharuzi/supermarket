@@ -68,6 +68,7 @@ import { AuthInterceptor } from './interceptors/auth/auth.interceptor';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { CustomerGuard } from './guards/customer/customer.guard';
 import { AdminGuard } from './guards/admin/admin.guard';
+import { CustomerProductsComponent } from './pages/members/customer/customer-products/customer-products.component';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,8 @@ import { AdminGuard } from './guards/admin/admin.guard';
     ProductItemComponent,
     MembersComponent,
     CustomerComponent,
-    AdminComponent
+    AdminComponent,
+    CustomerProductsComponent
   ],
   imports: [
     BrowserModule,

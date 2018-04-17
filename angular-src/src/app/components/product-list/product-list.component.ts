@@ -9,10 +9,11 @@ import { ActionService } from '../../services/action/action.service';
 })
 export class ProductListComponent implements OnInit {
   @Input() public products: any;
+  @Input() public customer: boolean;
 
   constructor(
     private actionService: ActionService
-  ) { }
+  ) {}
 
   ngOnInit() {
   }

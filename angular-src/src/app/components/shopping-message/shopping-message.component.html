@@ -1,7 +1,6 @@
 <div *ngIf="authService?.userData.role === 'customer'; else admin">
   <div class="text-center">
-    <button class="btn btn-primary btn-block mb-5 btn-lg" routerLink="/products">Start Shopping</button>
-    <button class="btn btn-primary btn-block mb-5 btn-lg" routerLink="/products">Resume Shopping</button>
+    <button class="btn btn-primary btn-block mb-5 btn-lg" routerLink="/members/customer/products">Start Shopping</button>
   </div>
 </div>
 <ng-template #admin>

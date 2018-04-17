@@ -1,5 +1,5 @@
 <div *ngIf="products && products.length" class="row">
   <div *ngFor="let product of products" (click)="onSelectProduct(product)" class="col-lg-3 pointer">
-    <app-product-item [product]="product"></app-product-item>
+    <app-product-item [customer]="customer" [product]="product"></app-product-item>
   </div>
 </div>
