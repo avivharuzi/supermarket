@@ -41,6 +41,9 @@ import { ErrorFormComponent } from './components/errors/error-form/error-form.co
 import { MembersComponent } from './pages/members/members.component';
 import { CustomerComponent } from './pages/members/customer/customer.component';
 import { AdminComponent } from './pages/members/admin/admin.component';
+import { CustomerProductsComponent } from './pages/members/customer/customer-products/customer-products.component';
+import { CartComponent } from './components/cart/cart.component';
+import { CartItemComponent } from './components/cart/cart-item/cart-item.component';
 
 // Services
 import { ValidationService } from './services/validation/validation.service';
@@ -68,7 +71,6 @@ import { AuthInterceptor } from './interceptors/auth/auth.interceptor';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { CustomerGuard } from './guards/customer/customer.guard';
 import { AdminGuard } from './guards/admin/admin.guard';
-import { CustomerProductsComponent } from './pages/members/customer/customer-products/customer-products.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +102,9 @@ import { CustomerProductsComponent } from './pages/members/customer/customer-pro
     MembersComponent,
     CustomerComponent,
     AdminComponent,
-    CustomerProductsComponent
+    CustomerProductsComponent,
+    CartComponent,
+    CartItemComponent
   ],
   imports: [
     BrowserModule,
