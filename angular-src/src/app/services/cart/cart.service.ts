@@ -19,6 +19,7 @@ import 'rxjs/add/observable/throw';
 export class CartService {
   public cart: any;
   public isCart: boolean;
+  public lastOrder: any;
 
   constructor(
     private http: HttpClient,
@@ -33,9 +34,14 @@ export class CartService {
   getCart() {
     this.http.get(BASE_CART_URL).subscribe((res: any) => {
       if (res) {
-        this.cart = res;
-        this.calcTotalPrice();
-        this.isCart = true;
+        if (!res.orderDate) {
+          this.cart = res;
+          this.calcTotalPrice();
+          this.isCart = true;
+        } else {
+          this.isCart = false;
+          this.lastOrder = res;
+        }
       } else {
         this.isCart = false;
       }
@@ -106,11 +112,14 @@ export class CartService {
       for (let item of this.cart.items) {
         this.cart.totalPrice += item.price;
       }
+    } else {
+      this.cart.totalPrice = 0;
     }
   }
 
   resetCart() {
     this.cart = null;
     this.isCart = null;
+    this.lastOrder = null;
   }
 }

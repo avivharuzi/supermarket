@@ -8,14 +8,14 @@ const RouteHandler = require('./../handlers/route.handler');
 router.get('/', (req, res) => {
     CartController.getCart(req.userData._id)
         .then((cart) => res.send(cart))
-        .catch((err) => RouteHandler.error(res, 404, '', err));
+        .catch((err) => RouteHandler.error(res, 409, '', err));
 });
 
 router.post('/', (req, res) => {
     CartController.checkBeforeSetCart(req.userData._id)
         .then(CartController.setCart)
         .then((newCart) => res.send(newCart))
-        .catch((err) => RouteHandler.error(res, 404, '', err));
+        .catch((err) => RouteHandler.error(res, 409, '', err));
 });
 
 module.exports = router;

@@ -72,6 +72,7 @@ export class OrderFormComponent implements OnInit {
         this.cartService.resetCart();
         this.orderService.needToConfirm = true;
         this.orderService.recipe = res.data;
+        this.cartService.getCart();
       }, err => {
         this.orderMessage = new Message('danger', err.errors);
       });

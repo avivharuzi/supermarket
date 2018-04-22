@@ -1,9 +1,10 @@
-<p class="text-warning">
-  Notification:
-  <br>
-  You have open cart from --date
-  <br>
-  your last purchase was on --date
-  <br>
-  Welcome --name
-</p>
+<div class="card">
+  <div class="card-body">
+    <h3 class="text-warning">
+      <span *ngIf="cartService?.cart">You have open cart from {{ cartService.cart.createdDate | date:'short' }}
+      <br>Total price: {{ cartService.cart.totalPrice | currency:'USD' }}</span>
+      <span *ngIf="cartService?.lastOrder && !cartService?.cart">Your last purchase was on {{ cartService.lastOrder.orderDate | date:'short' }}</span>
+      <span *ngIf="!cartService?.cart && !cartService?.lastOrder">Welcome to your first buy</span>
+    </h3>
+  </div>
+</div>

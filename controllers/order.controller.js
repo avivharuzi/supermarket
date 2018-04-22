@@ -41,24 +41,23 @@ class OrderController {
         });
     }
 
-    static checkOrderByCountInDay(userId) {
+    static checkOrderByCountInDay(shippingDate) {
         return new Promise((resolve, reject) => {
-            let start = new Date();
+            let start = new Date(shippingDate);
             start.setHours(0,0,0,0);
             start = start.getTime();
-            let end = new Date();
+            let end = new Date(shippingDate);
             end.setHours(23,59,59,999);
             end = end.getTime();
     
             Order.count({
-                user: userId,
-                orderDate: {
+                shippingDate: {
                     $gte: start,
                     $lt: end
                 }
             }).then((countOrders) => {
                 if (countOrders >= 3) {
-                    reject(['You have reached the limited number of orders (only 3 orders in one day) please come back tomorrow']);
+                    reject(['We have reached the limited number of orders today (only 3 orders in one day) please choose another date']);
                 } else {
                     resolve();
                 }
@@ -101,7 +100,7 @@ class OrderController {
             } else {
                 order.userId = userId;
 
-                OrderController.checkOrderByCountInDay(order.userId)
+                OrderController.checkOrderByCountInDay(order.shippingDate)
                     .then(() => resolve(order))
                     .catch(reject);
             }

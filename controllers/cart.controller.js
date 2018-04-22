@@ -1,4 +1,5 @@
 const Cart = require('./../models/cart.model');
+const Order = require('./../models/order.model');
 
 class CartController {
     static getCart(userId) {
@@ -13,7 +14,20 @@ class CartController {
                     }
                 }
             })
-            .then(resolve)
+            .then((cart) => {
+                if (cart) {
+                    resolve(cart);
+                } else {
+                    Order.findOne({ user: userId }).sort({ orderDate: -1 }).then((order) => {
+                        if (order) {
+                            resolve(order);
+                        } else {
+                            resolve(null);
+                        }
+                    })
+                    .catch(reject);
+                }
+            })
             .catch(reject);
         });
     }
@@ -22,7 +36,9 @@ class CartController {
         return new Promise((resolve, reject) => {
             CartController.getCart(userId)
             .then((cart) => {
-                if (cart) {
+                if (!cart) {
+                    resolve(userId);
+                } else if (!cart.orderDate) {
                     reject(['You have already cart in progress']);
                 } else {
                     resolve(userId);
