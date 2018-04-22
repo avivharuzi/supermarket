@@ -57,6 +57,14 @@ class CartController {
             .catch(reject);
         });
     }
+
+    static disableCartOfUser(userId) {
+        return new Promise((resolve, reject) => {
+            Cart.findOneAndUpdate({ user: userId, deletedDate: null }, { deletedDate: new Date().getTime() })
+                .then(resolve)
+                .catch(reject);
+        });
+    }
 }
 
 module.exports = CartController;

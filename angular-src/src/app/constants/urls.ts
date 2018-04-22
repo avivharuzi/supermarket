@@ -17,12 +17,10 @@ export const OVERALL_ORDERS_URL: string = `${BASE_OVERALL_URL}/orders`;
 export const BASE_API_URL: string = `${BASE_URL}/api`;
 
 export const BASE_CATEGORY_URL: string = `${BASE_API_URL}/category`;
-
 export const BASE_PRODUCT_URL: string = `${BASE_API_URL}/product`;
-
 export const BASE_CART_URL: string = `${BASE_API_URL}/cart`;
-
 export const BASE_ITEM_URL: string = `${BASE_API_URL}/item`;
+export const BASE_ORDER_URL: string = `${BASE_API_URL}/order`;
 
 export const CHECK_ROLE_OF_USER: string = `${BASE_API_URL}/user/role`;
 

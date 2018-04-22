@@ -87,6 +87,16 @@ class ItemController {
         });
     }
 
+    static deleteManyItems(items) {
+        let itemsDelete = [];
+        for (let item of items) {
+            itemsDelete.push(item._id);
+        }
+        return new Promise((resolve, reject) => {
+            Item.deleteMany({ _id: { $in: itemsDelete } }).then(resolve).catch(reject);
+        });
+    }
+
     static updateItem(itemId, item) {
         return new Promise((resolve, reject) => {
             MongooseHandler.checkBeforeActionById('Item', itemId)

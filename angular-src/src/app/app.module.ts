@@ -46,6 +46,8 @@ import { AdminComponent } from './pages/members/admin/admin.component';
 import { CustomerProductsComponent } from './pages/members/customer/customer-products/customer-products.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CartItemComponent } from './components/cart/cart-item/cart-item.component';
+import { OrderFormComponent } from './components/forms/order-form/order-form.component';
+import { CheckoutComponent } from './pages/members/customer/checkout/checkout.component';
 
 // Services
 import { ValidationService } from './services/validation/validation.service';
@@ -56,6 +58,7 @@ import { CategoryService } from './services/category/category.service';
 import { ActionService } from './services/action/action.service';
 import { CartService } from './services/cart/cart.service';
 import { ItemService } from './services/item/item.service';
+import { OrderService } from './services/order/order.service';
 
 // Pipes
 import { SearchPipe } from './pipes/search/search.pipe';
@@ -75,8 +78,6 @@ import { AuthInterceptor } from './interceptors/auth/auth.interceptor';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { CustomerGuard } from './guards/customer/customer.guard';
 import { AdminGuard } from './guards/admin/admin.guard';
-import { OrderFormComponent } from './components/forms/order-form/order-form.component';
-import { CheckoutComponent } from './pages/members/customer/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -142,6 +143,7 @@ import { CheckoutComponent } from './pages/members/customer/checkout/checkout.co
     ActionService,
     CartService,
     ItemService,
+    OrderService,
     AuthGuard,
     CustomerGuard,
     AdminGuard,

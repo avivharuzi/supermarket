@@ -3,9 +3,11 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Validator } from '../../../models/validator.model';
 
 import { ValidationService } from '../../../services/validation/validation.service';
+import { OrderService } from '../../../services/order/order.service';
 import { AuthService } from '../../../services/auth/auth.service';
 
 import { Message } from '../../../models/message.model';
+import { Order } from '../../../models/order.model';
 
 @Component({
   selector: 'app-order-form',
@@ -18,7 +20,8 @@ export class OrderFormComponent implements OnInit {
 
   constructor(
     private validationService: ValidationService,
-    private authService: AuthService
+    private authService: AuthService,
+    private orderService: OrderService
   ) { }
 
   ngOnInit() {
@@ -53,7 +56,18 @@ export class OrderFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.orderForm.valid) {
-      //
+      const order: Order = new Order(
+        this.getControl('city').value,
+        this.getControl('street').value,
+        this.getControl('creditCard').value,
+        this.getControl('shippingDate').value.getTime()
+      );
+
+      this.orderService.setOrder(order).subscribe((res: any) => {
+        console.log(res);
+      }, err => {
+        this.orderMessage = new Message('danger', err.errors);
+      });
     } else {
       this.validationService.dirtyAllInputs(this.orderForm);
     }
