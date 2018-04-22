@@ -39,12 +39,6 @@ const userSchema = new Schema({
         type: String,
         lowercase: true
     },
-    carts: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Cart'
-        }
-    ],
     orders: [
         {
             type: mongoose.Schema.Types.ObjectId,
