@@ -20,6 +20,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { TextMaskModule } from 'angular2-text-mask';
 
 // Components
 import { AppComponent } from './app.component';
@@ -132,7 +133,8 @@ import { AdminGuard } from './guards/admin/admin.guard';
     FileInputModule.forRoot(),
     ModalModule.forRoot(),
     InfiniteScrollModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    TextMaskModule
   ],
   providers: [
     ValidationService,

@@ -22,4 +22,9 @@ router.get('/orders', (req, res) => {
         .catch((err) => RouteHandler.error(res, 404, '', err));
 });
 
+router.get('/recipes/download/:txt', (req, res) => {
+    const file = process.env.RECIPES_PATH + '/' + req.params.txt;
+    res.download(file);
+});
+
 module.exports = router;

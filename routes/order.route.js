@@ -10,7 +10,8 @@ router.post('/', (req, res) => {
         .then(OrderController.getCartAndCalcOrdePrice)
         .then(OrderController.changeAndDeleteCartOfOrder)
         .then(OrderController.setOrder)
-        .then((newOrder) => RouteHandler.success(res, 'Order created successfully', newOrder))
+        .then(OrderController.makeRecipeForOrder)
+        .then((newOrder) => RouteHandler.success(res, 'Order created successfully', newOrder.recipe))
         .catch((err) => RouteHandler.error(res, 409, '', err));
 });
 

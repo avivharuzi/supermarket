@@ -1,7 +1,7 @@
 <div *ngIf="cart && cart.items.length; else emptyCart" class="card">
   <div class="card-header text-dark">
     <span class="float-left"><i class="fa fa-shopping-cart mr-3"></i>Shopping Cart</span>
-    <span *ngIf="isOrder" class="float-right"><button class="btn btn-warning text-white" routerLink="/members/customer/products">Back To Shop</button></span>
+    <span *ngIf="isOrder" class="float-right"><button class="btn btn-warning text-white" routerLink="/members/customer/products"><i class="fas fa-long-arrow-alt-left mr-3"></i>Back To Shop</button></span>
   </div>
   <div class="card-body">
     <app-cart-item *ngFor="let item of cart.items" [item]="item" [isOrder]="isOrder"></app-cart-item>

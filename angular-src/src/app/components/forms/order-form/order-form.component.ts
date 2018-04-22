@@ -5,6 +5,7 @@ import { Validator } from '../../../models/validator.model';
 import { ValidationService } from '../../../services/validation/validation.service';
 import { OrderService } from '../../../services/order/order.service';
 import { AuthService } from '../../../services/auth/auth.service';
+import { CartService } from '../../../services/cart/cart.service';
 
 import { Message } from '../../../models/message.model';
 import { Order } from '../../../models/order.model';
@@ -17,10 +18,14 @@ import { Order } from '../../../models/order.model';
 export class OrderFormComponent implements OnInit {
   public orderForm: FormGroup;
   public orderMessage: Message;
+  public isOrderFinished: boolean;
+
+  public mask = [/[1-9]/, /\d/, /\d/, /\d/, '-', /[1-9]/, /\d/, /\d/, /\d/, '-', /[1-9]/, /\d/, /\d/, /\d/, '-', /[1-9]/, /\d/, /\d/, /\d/];
 
   constructor(
     private validationService: ValidationService,
     private authService: AuthService,
+    private cartService: CartService,
     private orderService: OrderService
   ) { }
 
@@ -64,7 +69,9 @@ export class OrderFormComponent implements OnInit {
       );
 
       this.orderService.setOrder(order).subscribe((res: any) => {
-        console.log(res);
+        this.cartService.resetCart();
+        this.orderService.needToConfirm = true;
+        this.orderService.recipe = res.data;
       }, err => {
         this.orderMessage = new Message('danger', err.errors);
       });

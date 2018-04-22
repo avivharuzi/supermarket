@@ -6,6 +6,8 @@ const ItemController = require('./../controllers/item.controller');
 const ValidationHandler = require('./../handlers/validation.handler');
 const MongooseHandler = require('./../handlers/mongoose.handler');
 
+const fse = require('fs-extra');
+
 const Promise = require('bluebird');
 
 class OrderController {
@@ -29,7 +31,11 @@ class OrderController {
                 creditCard: order.creditCard
             })
             .then((newOrder) => {
-                resolve(newOrder);
+                let newOrderAfter = {};
+                newOrderAfter._id = newOrder._id;
+                newOrderAfter.price = newOrder.price;
+                newOrderAfter.items = order.items;
+                resolve(newOrderAfter);
             })
             .catch(reject);
         });
@@ -77,8 +83,9 @@ class OrderController {
                 errors.push('Street is invalid');
             }
     
-            if (ValidationHandler.regex(order.creditCard, /^[0-9]{1,55}$/)) {
+            if (ValidationHandler.regex(order.creditCard, /^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$/)) {
                 order.creditCard = ValidationHandler.testInput(order.creditCard);
+                order.creditCard = order.creditCard.substr(order.creditCard.length - 4);
             } else {
                 errors.push('Credit card is invalid');
             }
@@ -127,6 +134,24 @@ class OrderController {
                 resolve(order);
             })
             .catch(reject);
+        });
+    }
+
+    static makeRecipeForOrder(newOrder) {
+        return new Promise((resolve, reject) => {
+            const filename = newOrder._id + '.txt';
+            let data = `order id: ${newOrder._id}\n\n`;
+            for (let item of newOrder.items) {
+                data += `product: ${item.product.name} amount: ${item.amount} price: ${item.price}\n`;
+            }
+            data += `\ntotal price: ${newOrder.price}\n`;
+
+            fse.writeFile(process.env.RECIPES_PATH + '/' + filename, data)
+                .then(() => {
+                    newOrder.recipe = filename;
+                    resolve(newOrder);
+                })
+                .catch(reject);
         });
     }
 }

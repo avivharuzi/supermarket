@@ -12,7 +12,8 @@
     <app-error-form [control]="getControl('street')"></app-error-form>
   </div>
   <div class="form-group">
-    <input type="text" name="creditCard" formControlName="creditCard" [ngClass]="getStatus('creditCard')" class="form-control" placeholder="Credit Card">
+    <input type="text" [textMask]="{mask: mask}" name="creditCard" formControlName="creditCard" [ngClass]="getStatus('creditCard')"
+    class="form-control" placeholder="**** **** **** ****">
     <app-error-form [control]="getControl('creditCard')"></app-error-form>
   </div>
   <div class="form-group">

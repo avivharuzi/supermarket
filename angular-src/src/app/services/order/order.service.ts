@@ -13,13 +13,22 @@ import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class OrderService {
+  public needToConfirm: boolean;
+  public recipe: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   setOrder(order: Order): Observable<any> {
     return this.http.post(BASE_ORDER_URL, order).map((res: any) => {
       return res;
     })
     .catch((err: HttpErrorResponse) => Observable.throw(err.error));
+  }
+
+  resetOrder() {
+    this.needToConfirm = false;
+    this.recipe = null;
   }
 }

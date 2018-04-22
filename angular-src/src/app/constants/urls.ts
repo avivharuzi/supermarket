@@ -22,6 +22,8 @@ export const BASE_CART_URL: string = `${BASE_API_URL}/cart`;
 export const BASE_ITEM_URL: string = `${BASE_API_URL}/item`;
 export const BASE_ORDER_URL: string = `${BASE_API_URL}/order`;
 
+export const DOWNLOAD_RECIPE_URL: string = `${BASE_OVERALL_URL}/recipes/download`;
+
 export const CHECK_ROLE_OF_USER: string = `${BASE_API_URL}/user/role`;
 
-export const NO_AUTHORIZATION_URLS: string[] = [REGISTER_URL, LOGIN_URL, CHECK_TOKEN_URL, OVERALL_PRODUCTS_URL, OVERALL_ORDERS_URL];
+export const NO_AUTHORIZATION_URLS: string[] = [REGISTER_URL, LOGIN_URL, CHECK_TOKEN_URL, OVERALL_PRODUCTS_URL, OVERALL_ORDERS_URL, DOWNLOAD_RECIPE_URL];
