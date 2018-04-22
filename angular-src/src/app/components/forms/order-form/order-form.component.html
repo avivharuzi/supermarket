@@ -1,0 +1,25 @@
+<div class="jumbotron bg-primary p-3 mb-3 text-white text-center">
+  <h3>Shipping Details</h3>
+</div>
+<app-message [message]="orderMessage?.message" [type]="orderMessage?.type" [isOpen]="orderMessage?.isOpen" (closedMessage)="onClose()"></app-message>
+<form [formGroup]="orderForm" (ngSubmit)="onSubmit()" autocomplete="off" novalidate>
+  <div class="form-group">
+    <input type="text" name="city" formControlName="city" [ngClass]="getStatus('city')" class="form-control" placeholder="City" autofocus>
+    <app-error-form [control]="getControl('city')"></app-error-form>
+  </div>
+  <div class="form-group">
+    <input type="text" name="street" formControlName="street" [ngClass]="getStatus('street')" class="form-control" placeholder="Street">
+    <app-error-form [control]="getControl('street')"></app-error-form>
+  </div>
+  <div class="form-group">
+    <input type="text" name="creditCard" formControlName="creditCard" [ngClass]="getStatus('creditCard')" class="form-control" placeholder="Credit Card">
+    <app-error-form [control]="getControl('creditCard')"></app-error-form>
+  </div>
+  <div class="form-group">
+    <input type="text" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" formControlName="shippingDate" placeholder="Shipping Date"
+      class="form-control" bsDatepicker>
+  </div>
+  <div class="form-group">
+    <input type="submit" class="btn bg-success btn-block text-light" value="Submit">
+  </div>
+</form>

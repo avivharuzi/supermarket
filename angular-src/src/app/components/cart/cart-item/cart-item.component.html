@@ -17,11 +17,14 @@
       </h6>
     </div>
     <div class="col-4 col-sm-4 col-md-4">
-      <div class="quantity">
+      <div *ngIf="!isOrder" class="quantity">
         <input class="form-control" #amount (change)="updateItem(amount.value)" [value]="item.amount" max="99" min="1" step="1" title="Qty" type="number" value="1">
       </div>
+      <div *ngIf="isOrder">
+        <h3 class="badge badge-danger">{{ item.amount }}</h3>
+      </div>
     </div>
-    <div class="col-2 col-sm-2 col-md-2 text-right">
+    <div *ngIf="!isOrder" class="col-2 col-sm-2 col-md-2 text-right">
       <button class="btn btn-outline-danger btn-xs" (click)="removeItem()" type="button">
         <i class="fa fa-trash"></i>
       </button>

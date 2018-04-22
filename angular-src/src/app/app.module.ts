@@ -17,6 +17,7 @@ import { FileInputModule } from './modules/file-input/file-input.module';
 
 // Extra Modules
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgSelectModule } from '@ng-select/ng-select';
 
@@ -74,6 +75,8 @@ import { AuthInterceptor } from './interceptors/auth/auth.interceptor';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { CustomerGuard } from './guards/customer/customer.guard';
 import { AdminGuard } from './guards/admin/admin.guard';
+import { OrderFormComponent } from './components/forms/order-form/order-form.component';
+import { CheckoutComponent } from './pages/members/customer/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -107,7 +110,9 @@ import { AdminGuard } from './guards/admin/admin.guard';
     AdminComponent,
     CustomerProductsComponent,
     CartComponent,
-    CartItemComponent
+    CartItemComponent,
+    OrderFormComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
@@ -125,7 +130,8 @@ import { AdminGuard } from './guards/admin/admin.guard';
     PictureModule.forRoot(),
     FileInputModule.forRoot(),
     ModalModule.forRoot(),
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    BsDatepickerModule.forRoot()
   ],
   providers: [
     ValidationService,

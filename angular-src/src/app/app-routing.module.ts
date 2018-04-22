@@ -14,6 +14,7 @@ import { CustomerProductsComponent } from './pages/members/customer/customer-pro
 import { AuthGuard } from './guards/auth/auth.guard';
 import { CustomerGuard } from './guards/customer/customer.guard';
 import { AdminGuard } from './guards/admin/admin.guard';
+import { CheckoutComponent } from './pages/members/customer/checkout/checkout.component';
 
 // Routes
 const appRoutes: Routes = [
@@ -21,7 +22,8 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent, data: { title: 'Register' } },
   { path: 'members', component: MembersComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard], children: [
     { path: 'customer', component: CustomerComponent, canActivate: [CustomerGuard], canActivateChild: [CustomerGuard], children: [
-      { path: 'products', component: CustomerProductsComponent, data: { title: 'Products' } }
+      { path: 'products', component: CustomerProductsComponent, data: { title: 'Products' } },
+      { path: 'checkout', component: CheckoutComponent, data: { title: 'Checkout' } }
     ] },
     { path: 'admin', component: AdminComponent, canActivate: [AdminGuard], canActivateChild: [AdminGuard], children: [
       { path: 'products', component: AdminProductsComponent, data: { title: 'Products' } }

@@ -1,19 +1,16 @@
 <div *ngIf="cart && cart.items.length; else emptyCart" class="card">
   <div class="card-header text-dark">
-    <i class="fa fa-shopping-cart mr-3"></i>Shopping Cart
-    <div class="clearfix"></div>
+    <span class="float-left"><i class="fa fa-shopping-cart mr-3"></i>Shopping Cart</span>
+    <span *ngIf="isOrder" class="float-right"><button class="btn btn-warning text-white" routerLink="/members/customer/products">Back To Shop</button></span>
   </div>
   <div class="card-body">
-    <app-cart-item *ngFor="let item of cart.items" [item]="item"></app-cart-item>
+    <app-cart-item *ngFor="let item of cart.items" [item]="item" [isOrder]="isOrder"></app-cart-item>
   </div>
   <div class="card-footer">
-    <div class="float-right">
+    <div *ngIf="!isOrder" class="float-right">
       <a class="btn btn-success" routerLink="/members/customer/checkout">Checkout</a>
     </div>
-    <div class="float-left">
-      Total Price
-      <br>
-      <b>{{ cart?.totalPrice | currency:'USD' }}</b>
+    <div>Total Price<span *ngIf="!isOrder"><br></span><span [ngClass]="{ 'float-right': isOrder }"><b>{{ cart?.totalPrice | currency:'USD' }}</b></span>
     </div>
   </div>
 </div>

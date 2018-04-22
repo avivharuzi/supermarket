@@ -9,6 +9,7 @@ import { ActionService } from '../../../services/action/action.service';
 })
 export class CartItemComponent implements OnInit {
   @Input() public item: any;
+  @Input() public isOrder: boolean;
 
   public amount: number;
 
