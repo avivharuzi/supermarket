@@ -41,6 +41,22 @@ class CartController {
             .catch(reject);
         });
     }
+
+    static addItemToCart(item, userId) {
+        return new Promise((resolve, reject) => {
+            Cart.findOneAndUpdate({ user: userId, deletedDate: null }, { $push: { items: item._id } })
+            .then(() => resolve(item))
+            .catch(reject);
+        });
+    }
+
+    static removeItemFromCart(itemId, userId) {
+        return new Promise((resolve, reject) => {
+            Cart.findOneAndUpdate({ user: userId, deletedDate: null }, { $pull: { items: itemId } })
+            .then(() => resolve(itemId))
+            .catch(reject);
+        });
+    }
 }
 
 module.exports = CartController;

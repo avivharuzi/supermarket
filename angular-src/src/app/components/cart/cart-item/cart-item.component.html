@@ -1,6 +1,6 @@
-<div class="row">
+<div class="row mb-3">
   <div class="col-sm-2 text-center">
-    <app-picture [src]="item.product.picture" [class]="'w-100'"></app-picture>
+    <app-picture [src]="item.product.picture" width="50" height="50"></app-picture>
   </div>
   <div class="col-sm-4">
     <h4 class="product-name">
@@ -18,11 +18,11 @@
     </div>
     <div class="col-4 col-sm-4 col-md-4">
       <div class="quantity">
-        <input class="form-control" [value]="item.amount" max="99" min="1" step="1" title="Qty" type="number" value="1">
+        <input class="form-control" #amount (change)="updateItem(amount.value)" [value]="item.amount" max="99" min="1" step="1" title="Qty" type="number" value="1">
       </div>
     </div>
     <div class="col-2 col-sm-2 col-md-2 text-right">
-      <button class="btn btn-outline-danger btn-xs" type="button">
+      <button class="btn btn-outline-danger btn-xs" (click)="removeItem()" type="button">
         <i class="fa fa-trash"></i>
       </button>
     </div>

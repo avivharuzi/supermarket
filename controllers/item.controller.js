@@ -1,5 +1,7 @@
 const Item = require('./../models/item.model');
 
+const CartController = require('./../controllers/cart.controller');
+
 const ValidationHandler = require('./../handlers/validation.handler');
 const MongooseHandler = require('./../handlers/mongoose.handler');
 
@@ -11,12 +13,26 @@ class ItemController {
                 amount: item.amount,
                 price: item.price
             })
-            .then(resolve)
+            .then((newItem) => {
+                Item.findById(newItem._id)
+                .populate({
+                    path: 'product',
+                    populate: {
+                        path: 'category'
+                    }
+                })
+                .then((newItemAfter) => {
+                    CartController.addItemToCart(newItemAfter, item.userId)
+                    .then(resolve)
+                    .catch(reject);
+                })
+                .catch(reject);
+            })
             .catch(reject);
         });
     }
 
-    static validateItem(item) {
+    static validateItem(item, userId) {
         return new Promise((resolve, reject) => {
             let errors = [];
 
@@ -33,6 +49,8 @@ class ItemController {
             if (errors.length) {
                 reject(errors);
             } else {
+                item.userId = userId;
+
                 MongooseHandler.checkBeforeActionById('Product', item.product)
                 .then(() => {
                     resolve(item);
@@ -53,11 +71,38 @@ class ItemController {
         });
     }
 
-    static deleteItem(itemId) {
+    static deleteItem(itemId, userId) {
         return new Promise((resolve, reject) => {
             MongooseHandler.checkBeforeActionById('Item', itemId)
                 .then(() => {
                     Item.findByIdAndRemove(itemId)
+                    .then(() => {
+                        CartController.removeItemFromCart(itemId, userId)
+                        .then(resolve)
+                        .catch(reject);
+                    })
+                    .catch(reject);
+                })
+                .catch(reject);
+        });
+    }
+
+    static updateItem(itemId, item) {
+        return new Promise((resolve, reject) => {
+            MongooseHandler.checkBeforeActionById('Item', itemId)
+                .then(() => {
+                    Item.findByIdAndUpdate(itemId, {
+                        amount: item.amount,
+                        price: item.price
+                    }, {
+                        new: true
+                    })
+                    .populate({
+                        path: 'product',
+                        populate: {
+                            path: 'category'
+                        }
+                    })
                     .then(resolve)
                     .catch(reject);
                 })

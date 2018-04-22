@@ -8,4 +8,6 @@ export class ActionService {
   public updatedProduct: Subject<any> = new Subject<any>();
   public selectedProduct: Subject<any> = new Subject<any>();
   public selectedCartItem: Subject<any> = new Subject<any>();
+  public removeCartItem: Subject<any> = new Subject<any>();
+  public updatedCartItem: Subject<any> = new Subject<any>();
 }

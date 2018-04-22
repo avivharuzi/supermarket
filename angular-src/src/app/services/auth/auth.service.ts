@@ -6,6 +6,8 @@ import { User } from './../../models/user.model';
 import { Customer } from '../../models/customer.model';
 import { LOGIN_URL, REGISTER_URL, CHECK_TOKEN_URL, CHECK_ROLE_OF_USER } from './../../constants/urls';
 
+import { CartService } from '../cart/cart.service';
+
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -23,7 +25,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private cartService: CartService
   ) {
     this.token = localStorage.getItem('user_token');
     this.isLoggedIn = null;
@@ -49,6 +52,7 @@ export class AuthService {
         this.fullname = data.userData.firstname + ' ' + data.userData.lastname;
         this.isLoggedIn = true;
         this.navigateToDefaultRouteByRole();
+        this.cartService.getCart();
         return true;
       } else {
         return false;
@@ -83,6 +87,7 @@ export class AuthService {
     this.router.navigate(['/']);
     this.isLoggedIn = false;
     this.fullname = null;
+    this.cartService.resetCart();
   }
 
   checkToken(existToken?: string): Observable<any> {
@@ -112,6 +117,7 @@ export class AuthService {
       this.checkToken().subscribe((res: any) => {
         this.isLoggedIn = true;
         this.fullname = res.firstname + ' ' + res.lastname;
+        this.cartService.getCart();
       }, (err) => {
         this.logout();
       });

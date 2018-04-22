@@ -11,10 +11,10 @@ const AuthHandler = require('./../handlers/auth.handler');
 const routes = (app) => {
     app.use('/auth', authRoute);
     app.use('/overall', overallRoute);
-    app.use('/item', itemRoute);
     app.use('/api', AuthHandler.authenticate);
     app.use('/api/product', productRoute);
     app.use('/api/category', categoryRoute);
+    app.use('/api/item', itemRoute);
     app.use('/api/cart', cartRoute);
     app.use('/api/user', userRoute);
 };

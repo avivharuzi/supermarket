@@ -1,18 +1,23 @@
-<div class="row mb-3">
-  <div class="col-md-4">
-    <input type="text" [(ngModel)]="searchValue" (keyup)="resetProductsAndGet()" class="form-control form-control-lg" placeholder="Search">
-  </div>
-  <div class="col-md-8">
-    <ng-select [items]="categories | async" bindLabel="name" bindValue="_id" [hideSelected]="true" multiple="true" bindLabel="name"
-    placeholder="Select Categories" [(ngModel)]="selectedCategories">
-    </ng-select>
+<div *ngIf="products">
+  <div *ngIf="products && products.length">
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <input type="text" [(ngModel)]="searchValue" (keyup)="resetProductsAndGet()" class="form-control form-control-lg" placeholder="Search">
+      </div>
+      <div class="col-md-8">
+        <ng-select [items]="categories | async" bindLabel="name" bindValue="_id" [hideSelected]="true" multiple="true" bindLabel="name"
+          placeholder="Select Categories" [(ngModel)]="selectedCategories">
+        </ng-select>
+      </div>
+    </div>
+    <div class="row">
+      <div *ngFor="let product of products" (click)="onSelectProduct(product)" class="col-lg-3" [ngClass]="{ 'pointer': !customer }">
+        <app-product-item [customer]="customer" [product]="product"></app-product-item>
+      </div>
+    </div>
   </div>
 </div>
-<div *ngIf="products && products.length" class="row">
-  <div *ngFor="let product of products" (click)="onSelectProduct(product)" class="col-lg-3" [ngClass]="{ 'pointer': !customer }">
-    <app-product-item [customer]="customer" [product]="product"></app-product-item>
-  </div>
-</div>
+
 <div infiniteScroll [infiniteScrollDistance]="0" [infiniteScrollThrottle]="100" (scrolled)="onScroll()"></div>
 <div *ngIf="!finished && products.length" class="text-center">
   <img src="assets/images/tools/loading.gif" width="100px" height="100px">

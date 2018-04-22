@@ -53,6 +53,8 @@ import { OverallService } from './services/overall/overall.service';
 import { ProductService } from './services/product/product.service';
 import { CategoryService } from './services/category/category.service';
 import { ActionService } from './services/action/action.service';
+import { CartService } from './services/cart/cart.service';
+import { ItemService } from './services/item/item.service';
 
 // Pipes
 import { SearchPipe } from './pipes/search/search.pipe';
@@ -132,6 +134,8 @@ import { AdminGuard } from './guards/admin/admin.guard';
     ProductService,
     CategoryService,
     ActionService,
+    CartService,
+    ItemService,
     AuthGuard,
     CustomerGuard,
     AdminGuard,
