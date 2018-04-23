@@ -9,6 +9,7 @@ export class CartComponent implements OnInit {
   @Input() public cart: any;
   @Input() public isOrder: boolean;
   public totalPrice: number;
+  public searchValue: string = '';
 
   constructor() { }
 

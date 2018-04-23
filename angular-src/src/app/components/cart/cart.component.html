@@ -1,16 +1,24 @@
-<div *ngIf="cart && cart.items.length; else emptyCart" class="card">
-  <div class="card-header text-dark">
-    <span class="float-left"><i class="fa fa-shopping-cart mr-3"></i>Shopping Cart</span>
-    <span *ngIf="isOrder" class="float-right"><button class="btn btn-warning text-white" routerLink="/members/customer/products"><i class="fas fa-long-arrow-alt-left mr-3"></i>Back To Shop</button></span>
+<div *ngIf="cart && cart.items.length; else emptyCart">
+  <div *ngIf="isOrder">
+    <input type="text" [(ngModel)]="searchValue" class="form-control mb-3" placeholder="Search">
   </div>
-  <div class="card-body">
-    <app-cart-item *ngFor="let item of cart.items" [item]="item" [isOrder]="isOrder"></app-cart-item>
-  </div>
-  <div class="card-footer">
-    <div *ngIf="!isOrder" class="float-right">
-      <a class="btn btn-success" routerLink="/members/customer/checkout">Checkout</a>
+  <div class="card">
+    <div class="card-header text-dark">
+      <span class="float-left"><i class="fa fa-shopping-cart mr-3"></i>Shopping Cart</span>
+      <span *ngIf="isOrder" class="float-right"><button class="btn btn-warning text-white" routerLink="/members/customer/products"><i class="fas fa-long-arrow-alt-left mr-3"></i>Back To Shop</button></span>
     </div>
-    <div>Total Price<span *ngIf="!isOrder"><br></span><span [ngClass]="{ 'float-right': isOrder }"><b>{{ cart?.totalPrice | currency:'USD' }}</b></span>
+    <div *ngIf="isOrder" [appHighlight]="searchValue" class="card-body">
+      <app-cart-item *ngFor="let item of cart.items" [item]="item" [isOrder]="isOrder"></app-cart-item>
+    </div>
+    <div *ngIf="!isOrder" class="card-body">
+      <app-cart-item *ngFor="let item of cart.items" [item]="item" [isOrder]="isOrder"></app-cart-item>
+    </div>
+    <div class="card-footer">
+      <div *ngIf="!isOrder" class="float-right">
+        <a class="btn btn-success" routerLink="/members/customer/checkout">Checkout</a>
+      </div>
+      <div>Total Price<span *ngIf="!isOrder"><br></span><span [ngClass]="{ 'float-right': isOrder }"><b>{{ cart?.totalPrice | currency:'USD' }}</b></span>
+      </div>
     </div>
   </div>
 </div>
