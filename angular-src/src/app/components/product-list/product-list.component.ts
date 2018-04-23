@@ -16,7 +16,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   @Input() public customer: boolean;
   public products: any;
   public categories: any;
-  public selectedCategories: any;
+  public selectedCategory: any;
   public searchValue: string;
 
   public currentPage: number;
@@ -36,7 +36,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this.limitPage = 8;
     this.products = new Array<any>();
     this.finished = false;
-    this.selectedCategories = null;
+    this.selectedCategory = null;
     this.searchValue = null;
   }
 
@@ -62,7 +62,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   getProducts(): void {
     if (!this.finished) {
-      this.productService.getProducts(this.currentPage, this.limitPage, this.searchValue).subscribe((res: any) => {
+      this.productService.getProducts(this.currentPage, this.limitPage, this.searchValue, this.selectedCategory).subscribe((res: any) => {
         if (res.data.length) {
           this.currentPage++;
           this.products = this.products.concat(res.data);
@@ -74,12 +74,14 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   resetProductsAndGet(): void {
-    if (this.searchValue.length > 0) {
-      this.currentPage = 1;
-      this.finished = false;
-      this.products = new Array<any>();
-      this.getProducts();
-    }
+    this.currentPage = 1;
+    this.finished = false;
+    this.products = new Array<any>();
+    this.getProducts();
+  }
+
+  onCategoryChange() {
+    this.resetProductsAndGet();
   }
 
   onScroll(): void {

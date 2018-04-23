@@ -31,14 +31,15 @@ class ProductController {
 
     static buildLimitProductsQuery(query) {
         let productsQuery = {};
-
         if (query.name) {
             productsQuery.name = {
                 $regex: '.*' + query.name + '.*',
                 $options: 'i'
             };
         }
-
+        if (query.category) {
+            productsQuery.category = query.category;
+        }
         return productsQuery;
     }
 

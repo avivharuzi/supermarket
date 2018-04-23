@@ -16,10 +16,18 @@ export class ProductService {
     private http: HttpClient
   ) { }
 
-  getProducts(currentPage: number, limitPage: number, searchValue?: string): Observable<any> {
+  getProducts(currentPage: number, limitPage: number, searchValue?: string, category?: string): Observable<any> {
     let query = `${BASE_PRODUCT_URL}/${currentPage}/${limitPage}`;
     if (searchValue) {
       query += `?name=${searchValue}`;
+    }
+    if (searchValue && category) {
+      query += '&';
+    } else if (!searchValue && category) {
+      query += '?';
+    }
+    if (category) {
+      query += `category=${category}`;
     }
     return this.http.get(query).map((res: any) => {
       return res;

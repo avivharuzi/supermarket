@@ -72,6 +72,7 @@ import { SafeHtmlPipe } from './pipes/safe-html/safe-html.pipe';
 // Directives
 import { DefaultImageDirective } from './directives/default-image/default-image.directive';
 import { HighlightDirective } from './directives/highlight/highlight.directive';
+import { InfiniteScrollDirective } from './directives/infinite-scroll/infinite-scroll.directive';
 
 // Interceptores
 import { AuthInterceptor } from './interceptors/auth/auth.interceptor';
@@ -116,7 +117,8 @@ import { AdminGuard } from './guards/admin/admin.guard';
     CartItemComponent,
     OrderFormComponent,
     CheckoutComponent,
-    HighlightDirective
+    HighlightDirective,
+    InfiniteScrollDirective
   ],
   imports: [
     BrowserModule,
