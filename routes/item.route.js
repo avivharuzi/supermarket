@@ -29,4 +29,10 @@ router.delete('/:itemId', (req, res) => {
         .catch((err) => RouteHandler.error(res, 409, '', err));
 });
 
+router.delete('/delete/all', (req, res) => {
+    ItemController.getCartAndDeleteItems(req.userData._id)
+        .then(() => RouteHandler.success(res, 'All Items deleted successfully'))
+        .catch((err) => RouteHandler.error(res, 409, '', err));
+});
+
 module.exports = router;

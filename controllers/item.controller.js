@@ -119,6 +119,22 @@ class ItemController {
                 .catch(reject);
         });
     }
+
+    static getCartAndDeleteItems(userId) {
+        return new Promise((resolve, reject) => {
+            CartController.getCart(userId)
+                .then((cart) => {
+                    ItemController.deleteManyItems(cart.items)
+                    .then(() => {
+                        CartController.removeAllItemsFromCart(userId)
+                        .then(resolve)
+                        .catch(reject);
+                    })
+                    .catch(reject);
+                })
+                .catch(reject);
+        });
+    }
 }
 
 module.exports = ItemController;

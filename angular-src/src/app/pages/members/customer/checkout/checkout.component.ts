@@ -23,6 +23,11 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.cartService.cart && this.cartService.cart.items.length) {
+      return;
+    } else {
+      this.router.navigateByUrl('/');
+    }
   }
 
   confirm() {

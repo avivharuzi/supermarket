@@ -74,6 +74,14 @@ class CartController {
         });
     }
 
+    static removeAllItemsFromCart(userId) {
+        return new Promise((resolve, reject) => {
+            Cart.findOneAndUpdate({ user: userId, deletedDate: null }, { items: [] })
+            .then(resolve)
+            .catch(reject);
+        });
+    }
+
     static disableCartOfUser(userId) {
         return new Promise((resolve, reject) => {
             Cart.findOneAndUpdate({ user: userId, deletedDate: null }, { deletedDate: new Date().getTime() })

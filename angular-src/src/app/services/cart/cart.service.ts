@@ -29,6 +29,7 @@ export class CartService {
     this.onSelectedCartItem();
     this.onRemoveCartItem();
     this.onUpdateCartItem();
+    this.onCleanCart();
   }
 
   getCart() {
@@ -90,6 +91,15 @@ export class CartService {
       this.itemService.updateItem(item._id, item).subscribe((res: any) => {
         let foundIndex = this.cart.items.findIndex(x => x._id === item._id);
         this.cart.items[foundIndex] = res.data;
+        this.calcTotalPrice();
+      });
+    });
+  }
+
+  onCleanCart() {
+    this.actionService.cleanCart.subscribe(() => {
+      this.itemService.deleteAllItems().subscribe((res: any) => {
+        this.cart.items = [];
         this.calcTotalPrice();
       });
     });

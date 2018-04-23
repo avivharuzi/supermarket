@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { ActionService } from '../../services/action/action.service';
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -11,8 +13,14 @@ export class CartComponent implements OnInit {
   public totalPrice: number;
   public searchValue: string = '';
 
-  constructor() { }
+  constructor(
+    private actionService: ActionService
+  ) { }
 
   ngOnInit() {
+  }
+
+  cleanCart() {
+    this.actionService.cleanCart.next();
   }
 }

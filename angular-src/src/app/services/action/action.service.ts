@@ -10,4 +10,5 @@ export class ActionService {
   public selectedCartItem: Subject<any> = new Subject<any>();
   public removeCartItem: Subject<any> = new Subject<any>();
   public updatedCartItem: Subject<any> = new Subject<any>();
+  public cleanCart: Subject<any> = new Subject<any>();
 }

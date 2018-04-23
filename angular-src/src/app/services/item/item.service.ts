@@ -38,4 +38,11 @@ export class ItemService {
     })
     .catch((err: HttpErrorResponse) => Observable.throw(err.error));
   }
+
+  deleteAllItems(): Observable<any> {
+    return this.http.delete(`${BASE_ITEM_URL}/delete/all`).map((res: any) => {
+      return res;
+    })
+    .catch((err: HttpErrorResponse) => Observable.throw(err.error));
+  }
 }
