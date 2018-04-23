@@ -9,7 +9,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Custom Modules
 import { MessageModule } from './modules/message/message.module';
-import { PaginationModule } from './modules/pagination/pagination.module';
 import { BackToTopModule } from './modules/back-to-top/back-to-top.module';
 import { LoadingModule } from './modules/loading/loading.module';
 import { PictureModule } from './modules/picture/picture.module';
@@ -62,12 +61,8 @@ import { ItemService } from './services/item/item.service';
 import { OrderService } from './services/order/order.service';
 
 // Pipes
-import { SearchPipe } from './pipes/search/search.pipe';
 import { CapitalizePipe } from './pipes/capitalize/capitalize.pipe';
 import { UcwordsPipe } from './pipes/ucwords/ucwords.pipe';
-import { DefaultPipe } from './pipes/default/default.pipe';
-import { TruncatePipe } from './pipes/truncate/truncate.pipe';
-import { SafeHtmlPipe } from './pipes/safe-html/safe-html.pipe';
 
 // Directives
 import { DefaultImageDirective } from './directives/default-image/default-image.directive';
@@ -90,11 +85,7 @@ import { AdminGuard } from './guards/admin/admin.guard';
     ErrorPageComponent,
     DefaultImageDirective,
     CapitalizePipe,
-    SearchPipe,
     UcwordsPipe,
-    DefaultPipe,
-    TruncatePipe,
-    SafeHtmlPipe,
     HeaderComponent,
     LoginFormComponent,
     RegisterFormComponent,
@@ -130,7 +121,6 @@ import { AdminGuard } from './guards/admin/admin.guard';
     RouterModule,
     HttpClientModule,
     MessageModule.forRoot(),
-    PaginationModule.forRoot(),
     BackToTopModule.forRoot(),
     LoadingModule.forRoot(),
     PictureModule.forRoot(),

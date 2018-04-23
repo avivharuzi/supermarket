@@ -1,6 +1,6 @@
 <nav class="clearfix mb-5">
   <ul>
-    <li><a routerLink="/"><img src="assets/images/icon.png"></a></li>
+    <li><a routerLink="/"><img src="assets/images/icons/logo.png"></a></li>
     <li *ngIf="authService?.isLoggedIn" class="float-right nav-link-c mr-5" (click)="logout()"><a class="logout"><i class="fas fa-sign-out-alt mr-3"></i>Logout</a></li>
     <li *ngIf="authService?.fullname" class="float-right nav-link-c hello mr-5">Hello, {{ authService.fullname | ucwords }}</li>
   </ul>
