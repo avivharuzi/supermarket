@@ -13,6 +13,12 @@ router.post('/register', (req, res) => {
         .catch(err => RouteHandler.error(res, 409, '', err));
 });
 
+router.post('/register/before', (req, res) => {
+    UserController.validateUserCustomerBefore(req.body)
+        .then(() => RouteHandler.success(res, 'This fields are okay', true))
+        .catch(err => RouteHandler.error(res, 409, '', err));
+});
+
 router.post('/login', (req, res) => {
     UserController.checkUserForLogin(req.body)
         .then(AuthHandler.signUserToJwt)

@@ -116,6 +116,17 @@ class UserController {
             }
         });
     }
+
+    static validateUserCustomerBefore(user) {
+        return new Promise((resolve, reject) => {
+            Promise.all([
+                MongooseHandler.checkIfAlreadyExist('User', 'email', user.email.toLowerCase()),
+                MongooseHandler.checkIfAlreadyExist('User', 'identityCard', user.identityCard)
+            ])
+            .then(() => resolve(user))
+            .catch(reject);
+        });
+    }
 }
 
 module.exports = UserController;

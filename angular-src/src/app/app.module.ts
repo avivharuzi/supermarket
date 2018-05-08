@@ -76,6 +76,7 @@ import { AuthInterceptor } from './interceptors/auth/auth.interceptor';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { CustomerGuard } from './guards/customer/customer.guard';
 import { AdminGuard } from './guards/admin/admin.guard';
+import { FixedTopDirective } from './directives/fixed-top/fixed-top.directive';
 
 @NgModule({
   declarations: [
@@ -109,7 +110,8 @@ import { AdminGuard } from './guards/admin/admin.guard';
     OrderFormComponent,
     CheckoutComponent,
     HighlightDirective,
-    InfiniteScrollDirective
+    InfiniteScrollDirective,
+    FixedTopDirective
   ],
   imports: [
     BrowserModule,

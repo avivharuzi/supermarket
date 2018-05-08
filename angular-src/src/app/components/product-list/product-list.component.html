@@ -1,9 +1,12 @@
 <div class="product-list" appInfiniteScroll (infiniteScrollAction)="onScroll()" *ngIf="products">
   <div class="row mb-3">
+    <div class="col-md-1 text-center">
+      <ng-content></ng-content>
+    </div>
     <div class="col-md-4">
       <input type="text" [(ngModel)]="searchValue" (keyup)="resetProductsAndGet()" class="form-control form-control-lg" placeholder="Search">
     </div>
-    <div class="col-md-8">
+    <div class="col-md-7">
       <ng-select [items]="categories | async" bindLabel="name" bindValue="_id" bindLabel="name"
         placeholder="Select Categories" (change)="onCategoryChange()" [(ngModel)]="selectedCategory">
       </ng-select>

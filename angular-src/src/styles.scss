@@ -95,3 +95,102 @@ mark {
 .product-list {
   min-height: 800px;
 }
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  box-sizing: border-box;
+}
+
+.sidenav.active {
+  width: 750px;
+}
+
+.sidenav.fixed {
+  top: 0;
+  margin-top: 1.5rem;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.content {
+  transition: margin-left .5s;
+  padding: 16px;
+  margin-left: 0;
+}
+
+.content.active {
+  margin-left: 750px;
+}
+
+
+@media only screen and (max-width: 1192px) {
+  .sidenav {
+    height: 100%;
+    width: 100%;
+    position: relative !important;
+    z-index: 999;
+    left: 0;
+    overflow: auto;
+  }
+
+  .sidenav.active {
+    width: 100%;
+  }
+
+  .sidenav.fixed {
+    top: none;
+    margin-top: 1.5rem;
+  }
+
+  .bars-products {
+    display: none;
+  }
+
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+  .content {
+    margin-left: 0;
+  }
+
+  .content.active {
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  nav ul li {
+    float: left !important;
+    display: block;
+    width: 100%;
+  }
+
+  .nav-link-c, .hello {
+    display: block !important;
+    margin-top: 1.5rem;
+    height: 32px;
+    line-height: 32px;
+    float: left !important;
+  }
+
+  .hello {
+    padding: 0 25px;
+  }
+}

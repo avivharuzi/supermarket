@@ -1,4 +1,4 @@
-<div *ngIf="cart && cart.items.length; else emptyCart">
+<div class="main-cart" *ngIf="cart && cart.items.length; else emptyCart">
   <div *ngIf="isOrder">
     <input type="text" [(ngModel)]="searchValue" class="form-control mb-3" placeholder="Search">
   </div>

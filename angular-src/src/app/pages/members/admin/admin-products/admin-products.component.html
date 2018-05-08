@@ -1,8 +1,10 @@
-<div class="row">
-  <div class="col-md-4">
-    <app-product-form></app-product-form>
-  </div>
-  <div class="col-md-8">
-    <app-product-list></app-product-list>
-  </div>
+<div appFixedTop class="sidenav" class="sidenav" [ngClass]="{ 'active': isActive }">
+  <app-product-form></app-product-form>
+</div>
+<div class="content" [ngClass]="{ 'active': isActive }">
+  <app-product-list>
+    <span style="font-size:30px;cursor:pointer" class="bars-products" (click)="isActive = !isActive">
+      <i class="fa fa-bars"></i>
+    </span>
+  </app-product-list>
 </div>

@@ -6,7 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-products.component.scss']
 })
 export class AdminProductsComponent implements OnInit {
-  constructor() { }
+  public isActive: boolean;
+
+  constructor() {
+    this.isActive = true;
+  }
 
   ngOnInit() {
   }

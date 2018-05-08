@@ -94,8 +94,12 @@ export class RegisterFormComponent implements OnInit {
   }
 
   next(): void {
-    if (this.registerForm.get('userDetails').valid) {
-      this.step = 2;
+    if (this.checkPasswordConfirm() && this.registerForm.get('userDetails').valid) {
+      this.checkdentityCardOrEmailExists().then(() => {
+        this.registerMessage = null;
+        this.step = 2;
+      })
+      .catch(err => this.registerMessage = new Message('danger', err.errors));
     } else {
       this.validationService.dirtyAllInputs(this.registerForm.get('userDetails'));
     }
@@ -107,6 +111,33 @@ export class RegisterFormComponent implements OnInit {
 
   getStatus(group, control): string {
     return this.validationService.statusClass(this.getControl(group, control));
+  }
+
+  checkPasswordConfirm() {
+    let password = this.getControl('userDetails', 'password');
+    let confirmPassword = this.getControl('userDetails', 'confirmPassword');
+    if ((!password.value && !confirmPassword.value) || (password.value !== confirmPassword.value)) {
+      confirmPassword.setErrors({ 'passwordMatchError': 'Passwords are not matched' });
+      return false;
+    } else {
+      confirmPassword.setErrors(null);
+      return true;
+    }
+  }
+
+  checkdentityCardOrEmailExists() {
+    return new Promise((resolve, reject) => {
+      let customer = {
+        identityCard: this.getControl('userDetails', 'identityCard').value,
+        email: this.getControl('userDetails', 'email').value,
+      };
+
+      this.authService.beforeRegister(customer).subscribe(res => {
+        resolve(true);
+      }, err => {
+        reject(err);
+      });
+    });
   }
 
   onSubmit(): void {

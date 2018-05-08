@@ -6,6 +6,7 @@ export const LOADING_GIF_PATH: string = 'assets/images/tools/loading.gif';
 export const IMAGES_PATH: string = `${BASE_URL}/images`;
 
 export const REGISTER_URL: string = `${BASE_URL}/auth/register`;
+export const REGISTER_BEFORE_URL: string = `${BASE_URL}/auth/register/before`;
 export const LOGIN_URL: string = `${BASE_URL}/auth/login`;
 export const CHECK_TOKEN_URL: string = `${BASE_URL}/auth/check`;
 
@@ -26,4 +27,4 @@ export const DOWNLOAD_RECIPE_URL: string = `${BASE_OVERALL_URL}/recipes/download
 
 export const CHECK_ROLE_OF_USER: string = `${BASE_API_URL}/user/role`;
 
-export const NO_AUTHORIZATION_URLS: string[] = [REGISTER_URL, LOGIN_URL, CHECK_TOKEN_URL, OVERALL_PRODUCTS_URL, OVERALL_ORDERS_URL, DOWNLOAD_RECIPE_URL];
+export const NO_AUTHORIZATION_URLS: string[] = [REGISTER_URL, LOGIN_URL, CHECK_TOKEN_URL, OVERALL_PRODUCTS_URL, OVERALL_ORDERS_URL, DOWNLOAD_RECIPE_URL, REGISTER_BEFORE_URL];

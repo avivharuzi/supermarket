@@ -1,0 +1,10 @@
+#mainProductForm {
+  box-sizing: border-box;
+  padding-left: 31px;
+}
+
+@media only screen and (max-width: 1192px) {
+  #mainProductForm {
+    padding-right: 31px;
+  }
+}

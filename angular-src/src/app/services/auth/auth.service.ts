@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { User } from './../../models/user.model';
 import { Customer } from '../../models/customer.model';
-import { LOGIN_URL, REGISTER_URL, CHECK_TOKEN_URL, CHECK_ROLE_OF_USER } from './../../constants/urls';
+import { LOGIN_URL, REGISTER_URL, CHECK_TOKEN_URL, CHECK_ROLE_OF_USER, REGISTER_BEFORE_URL } from './../../constants/urls';
 
 import { CartService } from '../cart/cart.service';
 
@@ -57,6 +57,13 @@ export class AuthService {
       } else {
         return false;
       }
+    })
+    .catch((err: HttpErrorResponse) => Observable.throw(err.error));
+  }
+
+  beforeRegister(customer: any) {
+    return this.http.post(REGISTER_BEFORE_URL, customer).map((res: any) => {
+      return res;
     })
     .catch((err: HttpErrorResponse) => Observable.throw(err.error));
   }

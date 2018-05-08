@@ -8,9 +8,13 @@ import { CartService } from '../../../../services/cart/cart.service';
   styleUrls: ['./customer-products.component.scss']
 })
 export class CustomerProductsComponent implements OnInit {
+  public isActive: boolean;
+
   constructor(
     public cartService: CartService
-  ) { }
+  ) {
+    this.isActive = true;
+  }
 
   ngOnInit() {
     if (!this.cartService.isCart) {

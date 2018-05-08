@@ -26,7 +26,9 @@
     "core-js": "^2.4.1",
     "ngx-bootstrap": "^2.0.3",
     "ngx-infinite-scroll": "^0.8.4",
+    "node-sass": "^4.9.0",
     "rxjs": "^5.5.6",
+    "sass-loader": "^7.0.1",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
