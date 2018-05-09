@@ -66,6 +66,11 @@ export class ProductListComponent implements OnInit, OnDestroy {
         if (res.data.length) {
           this.currentPage++;
           this.products = this.products.concat(res.data);
+          this.products = this.products.filter((product, index, self) => {
+            return index === self.findIndex((p) => {
+              return p._id === product._id;
+            });
+          });
         } else {
           this.finished = true;
         }
