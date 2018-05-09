@@ -20,6 +20,7 @@ export class CheckoutComponent implements OnInit {
     private router: Router
   ) {
     this.downloadRecipe = DOWNLOAD_RECIPE_URL;
+    this.orderService.resetOrder();
   }
 
   ngOnInit() {
