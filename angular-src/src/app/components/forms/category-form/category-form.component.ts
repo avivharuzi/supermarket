@@ -49,6 +49,8 @@ export class CategoryFormComponent implements OnInit {
       } else {
         this.setAddCategory();
       }
+    } else {
+      this.validationService.dirtyAllInputs(this.categoryForm);
     }
   }
 

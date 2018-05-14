@@ -1,12 +1,18 @@
-<div class="main-cart" *ngIf="cart && cart.items.length; else emptyCart">
+<div class="pl" *ngIf="cart && cart.items.length; else emptyCart">
   <div *ngIf="isOrder">
     <input type="text" [(ngModel)]="searchValue" class="form-control mb-3" placeholder="Search">
   </div>
   <div class="card">
     <div class="card-header text-dark">
-      <span class="float-left"><i class="fa fa-shopping-cart mr-3"></i>Shopping Cart</span>
-      <span *ngIf="isOrder" class="float-right"><button class="btn btn-warning text-white" routerLink="/members/customer/products"><i class="fas fa-long-arrow-alt-left mr-3"></i>Back To Shop</button></span>
-      <span *ngIf="!isOrder" class="float-right"><button (click)="cleanCart()" class="btn btn-danger text-white">Clean Cart</button></span>
+      <span class="float-left">
+        <i class="fa fa-shopping-cart mr-3"></i>Shopping Cart</span>
+      <span *ngIf="isOrder" class="float-right">
+        <button class="btn btn-warning text-white" routerLink="/members/customer/products">
+          <i class="fas fa-long-arrow-alt-left mr-3"></i>Back To Shop</button>
+      </span>
+      <span *ngIf="!isOrder" class="float-right">
+        <button (click)="cleanCart()" class="btn btn-danger text-white">Clean Cart</button>
+      </span>
     </div>
     <div *ngIf="isOrder" [appHighlight]="searchValue" class="card-body">
       <app-cart-item *ngFor="let item of cart.items" [item]="item" [isOrder]="isOrder"></app-cart-item>
@@ -18,11 +24,19 @@
       <div *ngIf="!isOrder" class="float-right">
         <a class="btn btn-success" routerLink="/members/customer/checkout">Checkout</a>
       </div>
-      <div>Total Price<span *ngIf="!isOrder"><br></span><span [ngClass]="{ 'float-right': isOrder }"><b>{{ cart?.totalPrice | currency:'USD' }}</b></span>
+      <div>Total Price
+        <span *ngIf="!isOrder">
+          <br>
+        </span>
+        <span [ngClass]="{ 'float-right': isOrder }">
+          <b>{{ cart?.totalPrice | currency:'USD' }}</b>
+        </span>
       </div>
     </div>
   </div>
 </div>
 <ng-template #emptyCart>
-  <app-message [message]="'Your cart is empty'" [type]="'info'" [dismissible]="false"></app-message>
+  <div class="pl">
+    <app-message [message]="'Your cart is empty'" [type]="'info'" [dismissible]="false"></app-message>
+  </div>
 </ng-template>

@@ -4,17 +4,25 @@ import { Routes, RouterModule } from '@angular/router';
 
 // Components
 import { HomeComponent } from './pages/home/home.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { AdminProductsComponent } from './pages/members/admin/admin-products/admin-products.component';
 import { ErrorPageComponent } from './components/errors/error-page/error-page.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { CheckoutComponent } from './pages/members/customer/checkout/checkout.component';
+
+// Members
 import { MembersComponent } from './pages/members/members.component';
+
+// Admin
 import { AdminComponent } from './pages/members/admin/admin.component';
+import { AdminProductsComponent } from './pages/members/admin/admin-products/admin-products.component';
+
+// Customer
 import { CustomerComponent } from './pages/members/customer/customer.component';
 import { CustomerProductsComponent } from './pages/members/customer/customer-products/customer-products.component';
+
+// Guards
 import { AuthGuard } from './guards/auth/auth.guard';
 import { CustomerGuard } from './guards/customer/customer.guard';
 import { AdminGuard } from './guards/admin/admin.guard';
-import { CheckoutComponent } from './pages/members/customer/checkout/checkout.component';
 
 // Routes
 const appRoutes: Routes = [
