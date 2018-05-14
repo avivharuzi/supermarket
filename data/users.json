@@ -1,0 +1,2 @@
+{ "_id" : { "$oid" : "5ac89ded2c2ee707e4de7433" }, "firstname" : "aviv", "lastname" : "haruzi", "email" : "aviv@gmail.com", "identityCard" : 123456789, "password" : "$2a$10$b8lIgXzCPWvFSd3TRJz8f.9bHvCjJ6yjIYN9e0mr5g5YIeopAPEkm", "role" : "admin", "__v" : 0 }
+{ "_id" : { "$oid" : "5ad2fe4a744527248c46f1e4" }, "firstname" : "john", "lastname" : "doe", "email" : "john@gmail.com", "identityCard" : 147258369, "password" : "$2a$10$tuRSJL8BHzemSkU33HxO3Oo1YZ3Z8c1zRITM/3zsbOQnzWEbtmPQG", "role" : "customer", "city" : "tel aviv", "street" : "dd 23", "__v" : 0 }

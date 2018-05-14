@@ -1,0 +1,40 @@
+{ "_id" : { "$oid" : "5adc32abb172e51f3056e209" }, "name" : "banana", "category" : { "$oid" : "5ad33bf8b6455504c4b17719" }, "price" : 10, "picture" : "1524380331335.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5adc32b8b172e51f3056e20a" }, "name" : "avocado", "category" : { "$oid" : "5ad33bf8b6455504c4b17719" }, "price" : 30, "picture" : "1524380344383.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5adc32c1b172e51f3056e20b" }, "name" : "beet", "category" : { "$oid" : "5ad33f97e4c82d167cc053b2" }, "price" : 15, "picture" : "1524380353790.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5adc32ceb172e51f3056e20c" }, "name" : "carrot", "category" : { "$oid" : "5ad33f97e4c82d167cc053b2" }, "price" : 13.5, "picture" : "1524380366090.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5adc32e3b172e51f3056e20d" }, "name" : "corn", "category" : { "$oid" : "5ad33f97e4c82d167cc053b2" }, "price" : 17, "picture" : "1524380387187.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5adc32f8b172e51f3056e20e" }, "name" : "honey", "category" : { "$oid" : "5ad4d29c46c210334014d85e" }, "price" : 40, "picture" : "1524380408421.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5adc3304b172e51f3056e20f" }, "name" : "ginger", "category" : { "$oid" : "5ad33bf8b6455504c4b17719" }, "price" : 16.5, "picture" : "1524380420490.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5adc3311b172e51f3056e210" }, "name" : "fish", "category" : { "$oid" : "5ad4cd861fd8d637fc9e3d0f" }, "price" : 90, "picture" : "1524380433413.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5adc331eb172e51f3056e211" }, "name" : "grapes", "category" : { "$oid" : "5ad33bf8b6455504c4b17719" }, "price" : 18, "picture" : "1524380446125.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5adda1fde5374c39ac7c8a2f" }, "name" : "kiwi", "category" : { "$oid" : "5ad33bf8b6455504c4b17719" }, "price" : 50, "picture" : "1524474365824.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5adda21de5374c39ac7c8a30" }, "name" : "yogurt", "category" : { "$oid" : "5ad4b50d1031422638b09907" }, "price" : 23, "picture" : "1524474397754.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5adda23ae5374c39ac7c8a31" }, "name" : "mushroom", "category" : { "$oid" : "5ad33f97e4c82d167cc053b2" }, "price" : 12.5, "picture" : "1524474426679.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5adda255e5374c39ac7c8a32" }, "name" : "orange", "category" : { "$oid" : "5ad33bf8b6455504c4b17719" }, "price" : 9, "picture" : "1524474453063.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af9636bd95e2f29e8655058" }, "name" : "watermelon", "category" : { "$oid" : "5ad33bf8b6455504c4b17719" }, "price" : 20, "picture" : "1526293355582.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af963bed95e2f29e865505a" }, "name" : "bread", "category" : { "$oid" : "5af963b4d95e2f29e8655059" }, "price" : 3, "picture" : "1526293438094.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af96455d95e2f29e865505b" }, "name" : "juice", "category" : { "$oid" : "5ad4cda91fd8d637fc9e3d10" }, "price" : 8.5, "picture" : "1526293589644.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af96470d95e2f29e865505c" }, "name" : "smoothie", "category" : { "$oid" : "5ad4cda91fd8d637fc9e3d10" }, "price" : 14, "picture" : "1526293616550.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af96497d95e2f29e865505d" }, "name" : "milk", "category" : { "$oid" : "5ad4b50d1031422638b09907" }, "price" : 5, "picture" : "1526293655009.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af964aad95e2f29e865505e" }, "name" : "tomato", "category" : { "$oid" : "5ad33f97e4c82d167cc053b2" }, "price" : 2.5, "picture" : "1526293674371.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af964c6d95e2f29e865505f" }, "name" : "water", "category" : { "$oid" : "5ad4cda91fd8d637fc9e3d10" }, "price" : 3.5, "picture" : "1526293702054.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af964dfd95e2f29e8655060" }, "name" : "strawberry", "category" : { "$oid" : "5ad33bf8b6455504c4b17719" }, "price" : 5, "picture" : "1526293727532.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af964edd95e2f29e8655061" }, "name" : "apple", "category" : { "$oid" : "5ad33bf8b6455504c4b17719" }, "price" : 8, "picture" : "1526293741430.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af96555d95e2f29e8655062" }, "name" : "cola", "category" : { "$oid" : "5ad4cda91fd8d637fc9e3d10" }, "price" : 15, "picture" : "1526293845377.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af96563d95e2f29e8655063" }, "name" : "chicken", "category" : { "$oid" : "5ad4b50a1031422638b09906" }, "price" : 30, "picture" : "1526293859212.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af96576d95e2f29e8655064" }, "name" : "beer", "category" : { "$oid" : "5ad4cda91fd8d637fc9e3d10" }, "price" : 18, "picture" : "1526293878411.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af9658dd95e2f29e8655066" }, "name" : "french fries", "category" : { "$oid" : "5af96581d95e2f29e8655065" }, "price" : 25, "picture" : "1526293901994.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af9659ad95e2f29e8655067" }, "name" : "cake", "category" : { "$oid" : "5ad4d29c46c210334014d85e" }, "price" : 80, "picture" : "1526293914934.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af965bdd95e2f29e8655068" }, "name" : "fish and chips", "category" : { "$oid" : "5af96581d95e2f29e8655065" }, "price" : 95, "picture" : "1526293949921.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af965cbd95e2f29e8655069" }, "name" : "burger", "category" : { "$oid" : "5af96581d95e2f29e8655065" }, "price" : 55, "picture" : "1526293963177.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af965d8d95e2f29e865506a" }, "name" : "hot dog", "category" : { "$oid" : "5af96581d95e2f29e8655065" }, "price" : 20, "picture" : "1526293976846.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af965e8d95e2f29e865506b" }, "name" : "steak", "category" : { "$oid" : "5ad4b50a1031422638b09906" }, "price" : 105, "picture" : "1526293992005.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af965ffd95e2f29e865506c" }, "name" : "ice cream", "category" : { "$oid" : "5ad4d29c46c210334014d85e" }, "price" : 18.75, "picture" : "1526294015524.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af96613d95e2f29e865506d" }, "name" : "coffee", "category" : { "$oid" : "5ad4cda91fd8d637fc9e3d10" }, "price" : 13.25, "picture" : "1526294035874.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af9664dd95e2f29e865506e" }, "name" : "donuts", "category" : { "$oid" : "5ad4d29c46c210334014d85e" }, "price" : 8, "picture" : "1526294093205.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af96670d95e2f29e865506f" }, "name" : "chocolate", "category" : { "$oid" : "5ad4d29c46c210334014d85e" }, "price" : 5.5, "picture" : "1526294128059.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af96699d95e2f29e8655070" }, "name" : "pizza", "category" : { "$oid" : "5af96581d95e2f29e8655065" }, "price" : 30, "picture" : "1526294169492.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af966b4d95e2f29e8655071" }, "name" : "pie", "category" : { "$oid" : "5ad4d29c46c210334014d85e" }, "price" : 13.45, "picture" : "1526294196859.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af96752d95e2f29e8655072" }, "name" : "popcorn", "category" : { "$oid" : "5af96581d95e2f29e8655065" }, "price" : 23, "picture" : "1526294354858.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af9677ed95e2f29e8655073" }, "name" : "frappe", "category" : { "$oid" : "5ad4cda91fd8d637fc9e3d10" }, "price" : 9, "picture" : "1526294398399.png", "__v" : 0 }
+{ "_id" : { "$oid" : "5af96791d95e2f29e8655074" }, "name" : "burrito", "category" : { "$oid" : "5af96581d95e2f29e8655065" }, "price" : 35, "picture" : "1526294417143.png", "__v" : 0 }

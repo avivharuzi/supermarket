@@ -1,0 +1,9 @@
+{ "_id" : { "$oid" : "5ad33bf8b6455504c4b17719" }, "name" : "fruits", "__v" : 0 }
+{ "_id" : { "$oid" : "5ad33f97e4c82d167cc053b2" }, "name" : "vegetables", "__v" : 0 }
+{ "_id" : { "$oid" : "5ad4b50a1031422638b09906" }, "name" : "meat", "__v" : 0 }
+{ "_id" : { "$oid" : "5ad4b50d1031422638b09907" }, "name" : "milk", "__v" : 0 }
+{ "_id" : { "$oid" : "5ad4cd861fd8d637fc9e3d0f" }, "name" : "fish", "__v" : 0 }
+{ "_id" : { "$oid" : "5ad4cda91fd8d637fc9e3d10" }, "name" : "drinks", "__v" : 0 }
+{ "_id" : { "$oid" : "5ad4d29c46c210334014d85e" }, "name" : "sweets", "__v" : 0 }
+{ "_id" : { "$oid" : "5af963b4d95e2f29e8655059" }, "name" : "breads", "__v" : 0 }
+{ "_id" : { "$oid" : "5af96581d95e2f29e8655065" }, "name" : "fast food", "__v" : 0 }
